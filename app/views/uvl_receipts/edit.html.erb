@@ -1,0 +1,17 @@
+<div class='panel panel-default'>
+    <div class='panel-body'>
+        <h4>
+            <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+            &nbsp;Ufficio Vertenze e Legale&nbsp;<strong id='text-primary'>&nbsp;<%= fa_icon('pencil') %>&nbsp;Modifica Ricevuta:</strong>
+            <span class='pull-right'>
+                <%= link_to fa_icon('arrow-left') + ' ' + fa_icon('list') + '  ' + ' Ritorna all\'elenco', uvl_receipts_path, class: 'btn btn-default btn-sm' %>
+            </span>
+        </h4>
+        <hr id='hr-grey'>
+        <% if @uvl_receipt.cancellation_id != nil %>
+          <%= render 'cancelled_form' %>
+        <% else %>
+          <%= render 'cancellation_form' %>
+        <% end %>
+    </div>
+</div>

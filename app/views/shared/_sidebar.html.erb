@@ -1,0 +1,108 @@
+<nav class='navbar-lite navbar-side' role='navigation'>
+  <div class='container-fluid'>
+    <div class='sidebar-collapse'>
+      <ul class='nav' id='main-menu'>
+        <li>
+          <%= link_to inline_svg('sidebar_logo.svg', size: '128px * 72px', preserve_aspect_ratio: 'xMaxYMax meet'), root_path %>
+        </li>
+        <% if current_user.institute == 'Patronato INCA' || current_user.admin == true %>
+        <li>
+          <hr id='hr-grey'>
+        </li>
+        <li>
+          <h3>
+            <%= inline_svg('icon_inca.svg', size: '28px * 28px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+            &nbsp;<strong>INCA</strong>
+          </h3>
+        </li>
+        <li class='dropdown'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' id='condensed'>
+            <%= fa_icon('file') %><br>
+            <strong>RICEVUTE</strong>
+          </a>
+          <ul class='dropdown-menu' role='menu'>
+            <li>
+              <%= link_to fa_icon('pencil') + ' ' + ' NUOVA RICEVUTA LIBERALITA\'', new_inca_receipt_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('list') + ' ' + ' ELENCO RICEVUTE LIBERALITA\'', inca_receipts_path %>
+            </li>
+            <li>
+            <%= link_to fa_icon('download') + ' ' + ' SCARICO RICEVUTE LIBERALITA\'', bill_download_inca_receipts_path %>
+            </li>
+          </ul>
+        </li>
+        <li class='dropdown'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' id='condensed'>
+            <%= fa_icon('address-card') %><br>
+            <strong>SOTTOSCRIZIONI</strong
+          </a>
+          <ul class='dropdown-menu' role='menu'>
+            <li>
+              <%= link_to fa_icon('pencil') + ' ' + ' NUOVA SOTTOSCRIZIONE', new_inca_subscription_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('list') + ' ' + ' ELENCO SOTTOSCRIZIONI', inca_subscriptions_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('download') + ' ' + ' SCARICO SOTTOSCRIZIONI (Altre Categorie)', bill_download_inca_subscriptions_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('download') + ' ' + ' SCARICO SOTTOSCRIZIONI (NIDIL)', bill_downloadnidil_inca_subscriptions_path %>
+            </li>
+          </ul>
+        </li>
+        <% end %>
+        <% if current_user.institute == 'Ufficio Vertenze e Legale' || current_user.admin == true %>
+        <li>
+          <hr id='hr-grey'>
+        </li>
+        <li>
+          <h3>
+            <%= inline_svg('icon_uvl.svg', size: '28px * 28px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+            &nbsp;<strong>UVL</strong>
+          </h3>
+        </li>
+        <li class='dropdown'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' id='condensed'>
+            <%= fa_icon('file') %><br>
+            <strong>RICEVUTE</strong>
+          </a>
+          <ul class='dropdown-menu' role='menu'>
+            <li>
+              <%= link_to fa_icon('pencil') + ' ' + ' NUOVA RICEVUTA', new_uvl_receipt_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('list') + ' ' + ' ELENCO RICEVUTE', uvl_receipts_path %>
+            </li>
+            <li>
+            <%= link_to fa_icon('download') + ' ' + ' SCARICO RICEVUTE', bill_download_uvl_receipts_path %>
+          </li>
+          </ul>
+        </li>
+        <li class='dropdown'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' id='condensed'>
+            <%= fa_icon('address-card') %><br>
+            <strong>SOTTOSCRIZIONI</strong </a> <ul class='dropdown-menu' role='menu'>
+        <li>
+          <%= link_to fa_icon('pencil') + ' ' + ' NUOVA SOTTOSCRIZIONE', new_uvl_subscription_path %>
+        </li>
+        <li>
+          <%= link_to fa_icon('list') + ' ' + ' ELENCO SOTTOSCRIZIONI', uvl_subscriptions_path %>
+        </li>
+        <li>
+          <%= link_to fa_icon('download') + ' ' + ' SCARICO SOTTOSCRIZIONI (Altre Categorie)', bill_download_uvl_subscriptions_path %>
+        </li>
+        <li>
+          <%= link_to fa_icon('download') + ' ' + ' SCARICO SOTTOSCRIZIONI (NIDIL)', bill_downloadnidil_uvl_subscriptions_path %>
+        </li>
+        </ul>
+        </li>
+        <% end %>
+        <li>
+          <hr id='hr-grey'>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

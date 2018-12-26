@@ -1,0 +1,93 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uvl_office_id: 
+  subscription_typology_id: 
+  customer_name: MyString
+  customer_forname: MyString
+  sex_id: 
+  customer_birth_place: MyString
+  customer_birth_date: 2018-12-26
+  customer_fiscal_code: MyString
+  customer_nationality: MyString
+  customer_address: MyString
+  customer_zip: MyString
+  customer_city: MyString
+  customer_province: MyString
+  customer_phone: MyString
+  customer_mobile: MyString
+  customer_email: MyString
+  company_name: MyString
+  company_address: MyString
+  company_zip: MyString
+  company_city: MyString
+  company_province: MyString
+  company_typology_id: 
+  work_qualify_id: 
+  work_level_id: 
+  work_contract: MyString
+  work_worker_id: 
+  work_employee_date: 2018-12-26
+  work_workplace: MyString
+  payment: 9.99
+  payment_typology_id: 
+  category_id: 
+  subscription_year_id: 
+  practise_typology_id: 
+  privacy_one_id: 
+  privacy_two_id: 
+  privacy_three_id: 
+  note: MyText
+  cancellation_id: 
+  cancellation_reason: MyString
+  name: 1
+  date: 2018-12-26
+  user_id: 
+  institute: MyString
+  pdf: 
+
+two:
+  uvl_office_id: 
+  subscription_typology_id: 
+  customer_name: MyString
+  customer_forname: MyString
+  sex_id: 
+  customer_birth_place: MyString
+  customer_birth_date: 2018-12-26
+  customer_fiscal_code: MyString
+  customer_nationality: MyString
+  customer_address: MyString
+  customer_zip: MyString
+  customer_city: MyString
+  customer_province: MyString
+  customer_phone: MyString
+  customer_mobile: MyString
+  customer_email: MyString
+  company_name: MyString
+  company_address: MyString
+  company_zip: MyString
+  company_city: MyString
+  company_province: MyString
+  company_typology_id: 
+  work_qualify_id: 
+  work_level_id: 
+  work_contract: MyString
+  work_worker_id: 
+  work_employee_date: 2018-12-26
+  work_workplace: MyString
+  payment: 9.99
+  payment_typology_id: 
+  category_id: 
+  subscription_year_id: 
+  practise_typology_id: 
+  privacy_one_id: 
+  privacy_two_id: 
+  privacy_three_id: 
+  note: MyText
+  cancellation_id: 
+  cancellation_reason: MyString
+  name: 1
+  date: 2018-12-26
+  user_id: 
+  institute: MyString
+  pdf: 

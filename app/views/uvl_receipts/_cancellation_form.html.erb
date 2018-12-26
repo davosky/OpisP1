@@ -1,0 +1,60 @@
+<%= form_for(@uvl_receipt) do |f| %>
+<% if @uvl_receipt.errors.any? %>
+  <div id='error_explanation'>
+    <h2>
+      <%= pluralize(@uvl_receipt.errors.count, 'error') %>
+      non posso salvare il record corrente:</h2>
+    <ul>
+      <% @uvl_receipt.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<br>
+<strong>
+  Ricevuta n°&nbsp;<%= @uvl_receipt.name %>&nbsp;del&nbsp;<%= @uvl_receipt.date.strftime('%d/%m/%Y') %>
+  per:&nbsp;<%= @uvl_receipt.customer_name %>&nbsp;<%= @uvl_receipt.customer_forname %>&nbsp;-&nbsp;<%= @uvl_receipt.customer_fiscal_code %>
+</strong>
+<br>
+<br>
+<div class='row'>
+  <div class='col col-lg-4'>
+    <div class='field'>
+      <%= f.label 'Annulla la Ricevuta::', id: 'text-primary' %><br>
+      <%= f.collection_select(:cancellation_id, Cancellation.order('name ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+    </div>
+    <br>
+    <small>
+      (* Il campo Motivo dell'Annullamento: &egrave; obbligatorio)
+    </small>
+    <div class='field'>
+      <%= f.label 'Modivo dell\'Annullamento:', id: 'text-primary' %><br>
+      <%= f.text_field :cancellation_reason, required: true, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+<hr id='hr-grey'>
+<div class='row'>
+  <div class='col col-lg-4'>
+    <div class='form-group'>
+      <%= button_tag(type: 'submit', class: 'btn btn-success btn-sm') do %>
+      <%= fa_icon('save') %>&nbsp;Salva
+    <% end %>
+  </div>
+</div>
+</div>
+<% end %>
+<script type="text/javascript">
+$('form').submit(function () { //When a form is submitted...
+$('input').each(function () { //Check each input...
+  if ($(this).val() == "") { //To see if it is empty...
+    alert("Missing field"); //Say that it is
+    return false; //Don't submit the form
+  }
+});
+return; //If we made it this far, all is well, submit the form
+});
+</script>

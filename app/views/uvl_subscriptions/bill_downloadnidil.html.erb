@@ -1,0 +1,96 @@
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h4>
+        <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+        &nbsp;Ufficio Vertenze e Legale&nbsp;<strong id='text-primary'>&nbsp;<%= fa_icon('download') %>&nbsp;Scarico Sottoscrizioni (NIDIL):</strong>
+    </h4>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-12'>
+        <%= search_form_for @q, id: 'search-form', url: bill_downloadnidil_uvl_subscriptions_path do |f| %>
+        <div class='col col-lg-3'>
+          <div class='field'>
+            <%= f.label 'Data Inizio:' %><br>
+            <%= f.text_field :date_gteq, class: 'datepicker form-control' %>
+          </div>
+          <div class='field'>
+            <%= f.label 'Data Fine:' %><br>
+            <%= f.text_field :date_lteq, class: 'datepicker form-control' %>
+          </div>
+        </div>
+        <div class='col col-lg-4'>
+          <div class='field'>
+            <%= f.label 'Ufficio:' %>
+            <br>
+            <%= f.collection_select(:uvl_office_id_eq, UvlOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control', :id => 'office-id'}) %>
+          </div>
+          <br>
+          <div class='form-actions'>
+            <%= button_tag type: 'submit', class: 'btn btn-default btn-sm' do %>
+            <%= fa_icon('search') %>&nbsp;Cerca
+          <% end %>
+          <% if @uvl_subscriptions.count > 0 %>
+            &nbsp;
+            <%= link_to fa_icon('print') + ' ' + ' Stampa la Distinta', bill_downloadnidil_uvl_subscriptions_path(request.parameters.merge(format: 'pdf')), target: 'new', class: 'btn btn-default btn-sm', id: 'print' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<hr id='hr-grey'>
+<div class='row'>
+  <div class='col col-lg-12'>
+    <table class='table table-striped table-hove'>
+      <thead>
+        <tr>
+          <th>Numero:</th>
+          <th>Data:</th>
+          <th>Nome e Cognome:</th>
+          <th>Codice Fiscale:</th>
+          <th>Categoria</th>
+          <th>Ammontare:</th>
+          <th>Note:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @uvl_subscriptions.each do |uvl_subscription| %>
+          <tr>
+            <td><%= uvl_subscription.name %></td>
+            <td><%= uvl_subscription.date.strftime('%d/%m/%Y') %></td>
+            <td><%= uvl_subscription.customer_name %>&nbsp;<%= uvl_subscription.customer_forname %></td>
+            <td><%= uvl_subscription.customer_fiscal_code %></td>
+            <td><%= uvl_subscription.category.name %></td>
+            <td><%= number_to_currency(uvl_subscription.payment) %></td>
+            <td><%= uvl_subscription.note %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @uvl_subscriptions, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
+</div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('.datepicker').datepicker({ language: 'it' });
+  });
+
+  $('#search-form').submit(function () {
+    if ($('#office-id').val() == "") {
+      alert("Devi selezionare l'Ufficio e cliccare su Cerca");
+      return false;
+    };
+    return;
+  });
+
+  $('#print').click(function () {
+    if ($('#office-id').val() == "") {
+      alert("Devi selezionare l'Ufficio e cliccare su Cerca");
+      return false;
+    };
+    return;
+  });
+</script>

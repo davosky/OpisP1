@@ -1,0 +1,362 @@
+<% if @inca_subscription.cancellation_id != nil %>
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h4>
+      <%= inline_svg('icon_inca.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Patronato INCA&nbsp;
+      <strong id='text-primary'>&nbsp;Sottoscrizione</strong>
+      <span class='pull-right'>
+        <%= link_to fa_icon('arrow-left') + ' ' + fa_icon('list') + ' ' + 'Ritorna alla Lista', inca_subscriptions_path, class: 'btn btn-default btn-sm' %>
+      </span>
+    </h4>
+    <hr id='hr-grey'>
+    <br>
+    <div class='panel panel-primary'>
+      <div class='panel-body'>
+        <h3 id='text-centered'>
+          <strong id='text-primary'>
+            Annullata!
+          </strong>
+        </h3>
+        <p id='text-centered'>
+          Non puoi visualizzare la ricevuta corrente in quanto &egrave; stata annullata.
+          <br>
+          ..................................................................................................
+          <br>
+          <small>
+            Motivo Annullamento:
+          </small>
+          <br>
+          <%= @inca_subscription.cancellation_reason %>
+        </p>
+      </div>
+    </div>
+    <p id='text-centered'>
+      <strong>
+        Sottoscrizione n°&nbsp;
+        <%= @inca_subscription.name %>&nbsp;del&nbsp;
+        <%= @inca_subscription.created_at.strftime('%d/%m/%Y') %>
+        &nbsp; creata ale ore:&nbsp;
+        <%= @inca_subscription.created_at.strftime('%H:%M') %>&nbsp;
+        per:&nbsp;
+        <%= @inca_subscription.customer_name %>&nbsp;
+        <%= @inca_subscription.customer_forname %>
+        &nbsp;C.F.&nbsp;
+        <%= @inca_subscription.customer_fiscal_code %>
+      </strong>
+    </p>
+  </div>
+</div>
+<% else %>
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h4>
+      <%= inline_svg('icon_inca.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Patronato INCA&nbsp;
+      <strong id='text-primary'>
+        &nbsp;Sottoscrizione:&nbsp;
+        <%= @inca_subscription.name %>&nbsp;del:&nbsp;
+        <%= @inca_subscription.date.strftime('%d/%m/%Y') %></strong>
+      <span class='pull-right'>
+        <%= link_to fa_icon('arrow-left') + ' ' + fa_icon('list') + ' ' + 'Ritorna alla Lista', inca_subscriptions_path, class: 'btn btn-default btn-sm' %>
+        <% if @inca_subscription.pdf_file_name == nil %>
+        &nbsp;
+        <%= link_to fa_icon('print') + ' ' + ' Stampa la Sottoscrizione da firmare', inca_subscription_path(@inca_subscription, format: 'pdf'), target: 'new', class: 'btn btn-default btn-sm' %>
+        <% end %>
+      </span>
+    </h4>
+    <div class="row">
+      <div class="col col-lg-6">
+        <%= form_for(@inca_subscription) do |f| %>
+        <% if @inca_subscription.errors.any? %>
+        <hr id='hr-grey'>
+        <div id='error_explanation'>
+          <h2>
+            <%= pluralize(@inca_subscription.errors.count, 'error') %>
+            non posso salvare il record corrente:</h2>
+          <ul>
+            <% @inca_subscription.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <% if @inca_subscription.pdf_file_name == nil %>
+        <div class='row'>
+          <div class='col col-lg-12'>
+            <div class='field'>
+              <div class="well well-lg">
+                <h4>
+                  <%= f.label 'Allega la Ricevuta firmata(pdf):' %><br>
+                  <%= f.file_field :pdf, class: 'btn btn-default btn-sm' %>
+                  &nbsp;
+                  <div class='form-group'>
+                    <%= button_tag(type: 'submit', class: 'btn btn-success btn-sm') do %>
+                    <%= fa_icon('save') %>&nbsp;Salva
+                    <% end %>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end%>
+      </div>
+    </div>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-6' id='text-centered'>
+        <% if @inca_subscription.subscription_typology_id == 1 %>
+        RINNOVO:&nbsp;
+        <%= inline_svg('check_no.svg', size: '16pt * 16pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        NUOVA ISCRIZIONE:&nbsp;
+        <%= inline_svg('check_yes.svg', size: '16pt * 16pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% elsif @inca_subscription.subscription_typology_id == 2 %>
+        RINNOVO:&nbsp;
+        <%= inline_svg('check_yes.svg', size: '16pt * 16pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        NUOVA ISCRIZIONE:&nbsp;
+        <%= inline_svg('check_no.svg', size: '16pt * 16pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% end %>
+      </div>
+      <div class='col col-lg-6' id='text-centered'>
+      </div>
+    </div>
+    <hr id='hr-grey'>
+
+    <div class='row'>
+      <div class='col col-lg-6'>
+        <dl class='dl-horizontal'>
+          <dt>Nome:</dt>
+          <dd>
+            <%= @inca_subscription.customer_name %>
+          </dd>
+          <dt>Cognome:</dt>
+          <dd>
+            <%= @inca_subscription.customer_forname %>
+          </dd>
+          <dt>Sesso:</dt>
+          <dd>
+            <%= @inca_subscription.sex.name %>
+          </dd>
+          <dt>Nato a:</dt>
+          <dd>
+            <%= @inca_subscription.customer_birth_place %>
+          </dd>
+          <dt>Nato il:</dt>
+          <dd>
+            <%= @inca_subscription.customer_birth_date.strftime('%d/%m/%Y') %>
+          </dd>
+          <dt>Nazionalit&agrave;</dt>
+          <dd>
+            <%= @inca_subscription.customer_nationality %>
+          </dd>
+        </dl>
+      </div>
+      <div class='col col-lg-6'>
+        <dl class='dl-horizontal'>
+          <dt>Indirizzo:</dt>
+          <dd>
+            <%= @inca_subscription.customer_address %>
+          </dd>
+          <dt>Cap:</dt>
+          <dd>
+            <%= @inca_subscription.customer_zip %>
+          </dd>
+          <dt>Comune:</dt>
+          <dd>
+            <%= @inca_subscription.customer_city %>
+          </dd>
+          <dt>Provincia:</dt>
+          <dd>
+            <%= @inca_subscription.customer_province %>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-6">
+        <dl class='dl-horizontal'>
+          <dt>Telefono:</dt>
+          <dd>
+            <%= @inca_subscription.customer_phone %>
+          </dd>
+          <dt>Cellulare:</dt>
+          <dd>
+            <%= @inca_subscription.customer_mobile %>
+          </dd>
+        </dl>
+      </div>
+      <div class="col col-lg-6">
+        <dl class='dl-horizontal'>
+          <dt>
+            <h4>
+              <strong>
+                Codice Fiscale:
+              </strong>
+            </h4>
+          </dt>
+          <dd>
+            <h4><strong id='text-info'>
+                <%= @inca_subscription.customer_fiscal_code %></strong></h4>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-6'>
+        <dl class='dl-horizontal'>
+          <dt>Azienda:</dt>
+          <dd>
+            <%= @inca_subscription.company_name %>
+          </dd>
+          <dt>Tipologia:</dt>
+          <% if @inca_subscription.company_typology_id != nil %>
+          <dd>
+            <%= @inca_subscription.company_typology.name %>
+          </dd>
+          <% else %>
+          <dd></dd>
+          <% end %>
+          <dt>Indirizzo:</dt>
+          <dd>
+            <%= @inca_subscription.company_address %>
+          </dd>
+          <dt>Cap:</dt>
+          <dd>
+            <%= @inca_subscription.company_zip %>
+          </dd>
+          <dt>Comune:</dt>
+          <dd>
+            <%= @inca_subscription.company_city %>
+          </dd>
+          <dt>Provincia:</dt>
+          <dd>
+            <%= @inca_subscription.company_province %>
+          </dd>
+        </dl>
+      </div>
+      <div class='col col-lg-6'>
+        <dl class='dl-horizontal'>
+          <dt>Tipo lavoro:</dt>
+          <% if @inca_subscription.work_worker_id != nil %>
+          <dd>
+            <%= @inca_subscription.work_worker.name %>
+          </dd>
+          <% else %>
+          <dd></dd>
+          <% end %>
+          <dt>Qalifica:</dt>
+          <% if @inca_subscription.work_qualify_id != nil %>
+          <dd>
+            <%= @inca_subscription.work_qualify.name %>
+          </dd>
+          <% else %>
+          <dd></dd>
+          <% end %>
+          <dt>Livello:</dt>
+          <% if @inca_subscription.work_level_id != nil %>
+          <dd>
+            <%= @inca_subscription.work_level.name %>
+          </dd>
+          <% else %>
+          <dd></dd>
+          <% end %>
+          <dt>Contratto:</dt>
+          <dd>
+            <%= @inca_subscription.work_contract %>
+          </dd>
+          <dt>Data Assunzione:</dt>
+          <% if @inca_subscription.work_employee_date != nil %>
+          <dd>
+            <%= @inca_subscription.work_employee_date.strftime('%d/%m/%Y') %>
+          </dd>
+          <% else %>
+          <dd></dd>
+          <% end %>
+          <dt>Sede Lavorativa:</dt>
+          <dd>
+            <%= @inca_subscription.work_workplace %>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-4' id='text-centered'>
+        Ha versato: <strong>
+          <%= number_to_currency(@inca_subscription.payment) %></strong>
+      </div>
+      <div class='col col-lg-4' id='text-centered'>
+        per l'iscrizione alla categoria: <strong id='text-info'>
+          <%= @inca_subscription.category.name %></strong>
+      </div>
+      <div class='col col-lg-4' id='text-centered'>
+        in data: <strong id='text-info'>
+          <%= @inca_subscription.date.strftime('%d/%m/%Y') %></strong>
+      </div>
+    </div>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-12'>
+        <br>
+        Sottoscrizione raccolta da:&nbsp;<strong>
+          <%= @inca_subscription.institute %></strong>
+        &nbsp;ufficio di:&nbsp;<strong>
+          <%= @inca_subscription.inca_office.name %></strong>
+        <br>
+        &nbsp;operatore:&nbsp;<strong>
+          <%= @inca_subscription.user.name %></strong>
+        &nbsp;evento attivazione:&nbsp;<strong>
+          <%= @inca_subscription.inca_practise.name %></strong>
+        <br>
+        <br>
+      </div>
+    </div>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-12' id='text-centered'>
+        Privacy 1:&nbsp;
+        <% if @inca_subscription.privacy_one_id == 1 %>
+        &nbsp;
+        <%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% else %>
+        &nbsp;
+        <%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% end %>
+        &nbsp;
+        Privacy 2:&nbsp;
+        <% if @inca_subscription.privacy_two_id == 1 %>
+        &nbsp;
+        <%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% else %>
+        &nbsp;
+        <%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% end %>
+        &nbsp;
+        Privacy 3:&nbsp;
+        <% if @inca_subscription.privacy_three_id == 1 %>
+        &nbsp;
+        <%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% else %>
+        &nbsp;
+        <%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='row'>
+    <div class='col col-lg-12'>
+      <div class='row'>
+        <div class='col col-lg-12' id='text-centered'>
+          <% if @inca_subscription.pdf_file_name != nil %>
+          <iframe src=<%=@inca_subscription.pdf %> width='945' height='1340' style='border: none;'></iframe>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,62 @@
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h4>
+      <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Ufficio Vertenze e Legale&nbsp;<strong id='text-primary'>&nbsp;<%=  fa_icon('list') %>&nbsp;Elenco Ricevute:</strong>
+    </h4>
+    <hr id='hr-grey'>
+      <table class='table table-striped table-hover'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Numero:</th>
+            <th>Data:</th>
+            <th>Nome:</th>
+            <th>Codice Fiscale</th>
+            <th>Ammontare</th>
+            <th>Note:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @uvl_receipts.each do |uvl_receipt| %>
+          <tr>
+            <td>
+              <%= link_to fa_icon('pencil'), edit_uvl_receipt_path(uvl_receipt), id: 'text-warning' %>
+            </td>
+            <td>
+              <% if uvl_receipt.cancellation_id == nil %>
+                <%=link_to uvl_receipt.name, uvl_receipt, class: 'btn btn-default btn-xs' %>
+              <% else %>
+                <%=link_to uvl_receipt.name, uvl_receipt, class: 'btn btn-primary btn-xs' %>
+              <% end %>
+            </td>
+            <td>
+              <%= uvl_receipt.date.strftime('%d/%m/%Y') %>
+            </td>
+            <td>
+              <%= uvl_receipt.customer_name %>&nbsp;<%= uvl_receipt.customer_forname %>
+            </td>
+            <td>
+              <%= uvl_receipt.customer_fiscal_code %>
+            </td>
+            <td>
+              <%= uvl_receipt.payment %>
+            </td>
+            <td>
+              <%= truncate(uvl_receipt.note, length: 35) %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+<div id='text-centered'>
+  <h6>
+    <small>
+      <p id='notice'>
+        <%= notice %>
+      </p>
+    </small>
+  </h6>
+</div>

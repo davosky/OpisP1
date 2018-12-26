@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uvl_office_id: 
+  customer_name: MyString
+  customer_forname: MyString
+  customer_birth_place: MyString
+  customer_birth_date: 2018-12-22
+  customer_fiscal_code: MyString
+  customer_address: MyString
+  customer_zip: MyString
+  customer_city: MyString
+  customer_province: MyString
+  payment: 9.99
+  payment_typology_id: 
+  practise_typology_id: 
+  company: MyString
+  lawyer_id: 
+  category_id: 
+  note: MyText
+  cancellation_id: 
+  cancellation_reason: MyString
+  name: 1
+  date: 2018-12-22
+  user_id: 
+  institute: MyString
+  pdf: 
+
+two:
+  uvl_office_id: 
+  customer_name: MyString
+  customer_forname: MyString
+  customer_birth_place: MyString
+  customer_birth_date: 2018-12-22
+  customer_fiscal_code: MyString
+  customer_address: MyString
+  customer_zip: MyString
+  customer_city: MyString
+  customer_province: MyString
+  payment: 9.99
+  payment_typology_id: 
+  practise_typology_id: 
+  company: MyString
+  lawyer_id: 
+  category_id: 
+  note: MyText
+  cancellation_id: 
+  cancellation_reason: MyString
+  name: 1
+  date: 2018-12-22
+  user_id: 
+  institute: MyString
+  pdf: 

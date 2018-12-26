@@ -1,0 +1,231 @@
+<% if @uvl_receipt.cancellation_id != nil %>
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h4>
+      <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Patronato uvl&nbsp;
+      <strong id='text-primary'>&nbsp;Ricevuta</strong>
+      <span class='pull-right'>
+        <%= link_to fa_icon('arrow-left') + ' ' + fa_icon('list') + ' ' + 'Ritorna alla Lista', uvl_receipts_path, class: 'btn btn-default btn-sm' %>
+      </span>
+    </h4>
+    <hr id='hr-grey'>
+    <br>
+    <div class='panel panel-primary'>
+      <div class='panel-body'>
+        <h3 id='text-centered'>
+          <strong id='text-primary'>
+            Annullata!
+          </strong>
+        </h3>
+        <p id='text-centered'>
+          Non puoi visualizzare la ricevuta corrente in quanto &egrave; stata annullata.
+          <br>
+          ..................................................................................................
+          <br>
+          <small>
+            Motivo Annullamento:
+          </small>
+          <br>
+          <%= @uvl_receipt.cancellation_reason %>
+        </p>
+      </div>
+    </div>
+    <p id='text-centered'>
+      <strong>
+        Ricevuta n°&nbsp;
+        <%= @uvl_receipt.name %>&nbsp;del&nbsp;
+        <%= @uvl_receipt.created_at.strftime('%d/%m/%Y') %>
+        &nbsp; creata ale ore:&nbsp;
+        <%= @uvl_receipt.created_at.strftime('%H:%M') %>&nbsp;
+        per:&nbsp;
+        <%= @uvl_receipt.customer_name %>&nbsp;
+        <%= @uvl_receipt.customer_forname %>
+        &nbsp;C.F.&nbsp;
+        <%= @uvl_receipt.customer_fiscal_code %>
+      </strong>
+    </p>
+  </div>
+</div>
+<% else %>
+<div class='panel panel-default'>
+  <div class='panel-body'>
+    <h4>
+      <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Ufficio Vertenze e Legale&nbsp;
+      <strong id='text-primary'>
+        &nbsp;Ricevuta:&nbsp;
+        <%= @uvl_receipt.name %>&nbsp;del:&nbsp;
+        <%= @uvl_receipt.date.strftime('%d/%m/%Y') %></strong>
+      <span class='pull-right'>
+        <%= link_to fa_icon('arrow-left') + ' ' + fa_icon('list') + ' ' + 'Ritorna alla Lista', uvl_receipts_path, class: 'btn btn-default btn-sm' %>
+        <% if @uvl_receipt.pdf_file_name == nil %>
+        &nbsp;
+        <%= link_to fa_icon('print') + ' ' + ' Stampa la Ricevuta da firmare', uvl_receipt_path(@uvl_receipt, format: 'pdf'), target: 'new', class: 'btn btn-default btn-sm' %>
+        <% end %>
+      </span>
+    </h4>
+    <hr id='hr-grey'>
+    <% if @uvl_receipt.pdf_file_name == nil %>
+    <div class='row'>
+      <div class='col col-lg-12'>
+        <%= form_for(@uvl_receipt) do |f| %>
+        <% if @uvl_receipt.errors.any? %>
+        <div id='error_explanation'>
+          <h2>
+            <%= pluralize(@uvl_receipt.errors.count, 'error') %>
+            non posso salvare il record corrente:</h2>
+          <ul>
+            <% @uvl_receipt.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div class='field'>
+          <div class='well well-lg'>
+            <h4>
+              <%= f.label 'Allega la Ricevuta firmata(pdf):' %><br>
+              <%= f.file_field :pdf, class: 'btn btn-default btn-sm' %>
+            </h4>
+            <div class='row'>
+              <div class='col col-lg-12'>
+                <div class='col col-lg-4'>
+                  <% if @uvl_receipt.payment >= 77.44 %>
+                  <div class='alert alert-warning'>
+                    <h4>ATTENZIONE!</h4>
+                    <p>L'importo supera i 77,44 Euro ricordarsi di allegare la marca da bollo!</p>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='form-group'>
+          <%= button_tag(type: 'submit', class: 'btn btn-success btn-sm') do %>
+          <%= fa_icon('save') %>&nbsp;Salva
+          <% end %>
+        </div>
+        <hr id='hr-grey'>
+        <% end %>
+        <% end %>
+        <dl class='dl-horizontal'>
+          <div class='row'>
+            <div class='col col-lg-4'>
+              <dt>Data:</dt>
+              <dd>
+                <%= @uvl_receipt.date.strftime('%d/%m/%Y') %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Operatore:</dt>
+              <dd>
+                <%= @uvl_receipt.user.name %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Istituto:</dt>
+              <dd>
+                <%= @uvl_receipt.institute %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Ufficio:</dt>
+              <dd>
+                <%= @uvl_receipt.uvl_office.name %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+            </div>
+            <div class='col col-lg-4'>
+              <dt>Nome e Cognome:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_name %>&nbsp;
+                <%= @uvl_receipt.customer_forname %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Luogo di nascita:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_birth_place %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Data di Nascita:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_birth_date.strftime('%d/%m/%Y') %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Codice Fiscale:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_fiscal_code %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+            </div>
+            <div class='col col-lg-4'>
+              <dt>Indirizzo:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_address %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Cap:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_zip %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>Comune:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_city %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+              <dt>provincia:</dt>
+              <dd>
+                <%= @uvl_receipt.customer_province %>
+                <br>
+                <hr id='hr-grey'>
+              </dd>
+            </div>
+          </div>
+          <hr id='hr-grey'>
+          <div class='row'>
+            <div class='col col-lg-4'>
+              <dt>Tipo Pagamento:</dt>
+              <dd>
+                <%= @uvl_receipt.payment_typology.name %>
+              </dd>
+              <dt>Ammontare:</dt>
+              <dd>
+                <strong>
+                  <%= number_to_currency(@uvl_receipt.payment) %></strong>
+              </dd>
+            </div>
+            <div class='col col-lg-8'>
+              <dt>Note:</dt>
+              <dd>
+                <%= @uvl_receipt.note %>
+              </dd>
+            </div>
+          </div>
+        </dl>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col col-lg-12'>
+        <div class='row'>
+          <div class='col col-lg-12' id='text-centered'>
+            <% if @uvl_receipt.pdf_file_name != nil %>
+            <iframe src=<%=@uvl_receipt.pdf %> width='945' height='1340' style='border: none;'></iframe>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>

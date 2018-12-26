@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= stylesheet_link_tag wicked_pdf_asset_base64('pdfuvlreceipt') %>
+  </head>
+  <body>
+    <div id='page'>
+    <div id='header'>
+      <div id='logo'>
+          <%= inline_svg('header_ricevuta_uvl.svg', size: '170mm * 15mm', preserve_aspect_ratio: 'xMaxYMax meet') %>
+      </div>
+        <hr>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        <div class='row'>
+            <h3>
+                <strong>
+                  <%= @uvl_receipt.institute %>
+                </strong>
+                &nbsp;sede di:&nbsp;
+                <strong>
+                  <%= @uvl_receipt.uvl_office.name %>
+                </strong>
+            </h3>
+            <p>
+              <h3>
+                RICEVUTA N°: <%= @uvl_receipt.name %>
+                &nbsp;del&nbsp;
+                <%= @uvl_receipt.date.strftime('%d/%m/%Y') %>
+              </h3>
+            </p>
+            <p>
+                <h3>
+                  <strong>
+                    <%= @uvl_receipt.practise_typology.name %>
+                    &nbsp;
+                    <%= @uvl_receipt.company %>
+                  </strong>
+                </h3>
+            </p>
+            <hr>
+            <p>
+              Si attesta che il Sig / la Sig.ra <strong><%= @uvl_receipt.customer_name %>&nbsp;<%= @uvl_receipt.customer_forname %></strong>
+              C.F. <strong><%= @uvl_receipt.customer_fiscal_code %></strong> iscritto / a alla <strong><%= @uvl_receipt.category.name %></strong>
+              ha versato un contributo per sostegno all'attivit&agrave;
+              di assistenza di <strong><%= @uvl_receipt.institute %></strong> pari a <strong><%= number_to_currency(@uvl_receipt.payment) %></strong>
+            </p>
+            <br>
+            <p>
+                p.<%= @uvl_receipt.institute %><small>(<%= @uvl_receipt.uvl_office.name %>)</small>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                ................................................................
+                <br>
+                <%= current_user.name %>
+            </p>
+            <br>
+            <br>
+            <p>
+              L'attivit&agrave; svolta da <%= @uvl_receipt.institute %> rientra nelle finalit&agrave; statutarie della C.G.I.L.
+              il versamento di contributi alle associazioni
+              sindacali sono regolate dall'articolo 4 del D.P.R. n°633 del 26 ottobre 1972 e dall'articolo 111 D.P.R. n° 917
+              e successive integrazioni
+            </p>
+            <p>
+              Il Lavoratore risulta iscritto per l'anno <%= @uvl_receipt.date.strftime('%Y') %> presso la Categoria: <%= @uvl_receipt.category.name %>.
+              Iscrizione attiva confermata in data <%= @uvl_receipt.date.strftime('%d/%m/%Y') %> da archivio ArGO installazione della Provincia di Udine
+              riferimento tramite codice fiscale <%= @uvl_receipt.customer_fiscal_code %>
+            </p>
+            <br>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <hr>
+      <small>
+        operatore:&nbsp;<%= current_user.name %>
+        <br>
+        <strong>OpisP1</strong> web-application to manage receipts and subscriptions - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
+      </small>
+    </footer>
+    </div>
+  </body>
+</html>

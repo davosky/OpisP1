@@ -1,0 +1,339 @@
+<%= form_for(@uvl_subscription) do |f| %>
+  <% if @uvl_subscription.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@uvl_subscription.errors.count, 'error') %> non posso salvare il record corrente:</h2>
+      <ul>
+      <% @uvl_subscription.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class='col col-lg-8'>
+  <div class='row'>
+    <div class='col col-lg-6'>
+      <h4>
+        <strong id='text-info'>
+          Tesseramento
+        </strong>
+      </h4>
+      <br>
+      <div class='field'>
+        <%= f.label 'Tipologia Iscrizione:' %><br>
+        <%= f.collection_select(:subscription_typology_id, SubscriptionTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            Anagrafica
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Nome:' %><br>
+          <%= f.text_field :customer_name, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Cognome:' %><br>
+          <%= f.text_field :customer_forname, class: 'form-control' %>
+        </div>
+        <div class='field'>
+            <%= f.label 'Sesso:' %><br>
+            <%= f.collection_select(:sex_id, Sex.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Luogo di Nascita:' %><br>
+          <%= f.text_field :customer_birth_place, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Data di Nascita:' %><br>
+          <%= f.text_field :customer_birth_date, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Codice Fiscale:' %><br>
+          <%= f.text_field :customer_fiscal_code, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Cittadinanza:' %><br>
+          <%= f.text_field :customer_nationality, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col col-lg-6'>
+          <h4>
+              <strong id='text-info'>
+                &nbsp;
+              </strong>
+            </h4>
+            <br>
+        <div class='field'>
+          <%= f.label 'Indirizzo:' %><br>
+          <%= f.text_field :customer_address, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Cap:' %><br>
+          <%= f.text_field :customer_zip, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Comune:' %><br>
+          <%= f.text_field :customer_city, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Provincia:' %><br>
+          <%= f.text_field :customer_province, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Telefono:' %><br>
+          <%= f.text_field :customer_phone, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Cellulare:' %><br>
+          <%= f.text_field :customer_mobile, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'E-Mail:' %><br>
+          <%= f.text_field :customer_email, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            Aziendale
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Azienda:' %><br>
+          <%= f.text_field :company_name, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Tipologia Azienda:' %><br>
+          <%= f.collection_select(:company_typology_id, CompanyTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Indirizzo:' %><br>
+          <%= f.text_field :company_address, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Cap:' %><br>
+          <%= f.text_field :company_zip, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Comune:' %><br>
+          <%= f.text_field :company_city, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Provincia:' %><br>
+          <%= f.text_field :company_province, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            &nbsp;
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+            <%= f.label 'Qualifica:' %><br>
+            <%= f.collection_select(:work_qualify_id, WorkQualify.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+        <div class='field'>
+            <%= f.label 'Livello:' %><br>
+            <%= f.collection_select(:work_level_id, WorkLevel.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+        <div class='field'>
+          <%= f.label 'Contratto:' %><br>
+          <%= f.text_field :work_contract, class: 'form-control' %>
+        </div>
+        <div class='field'>
+            <%= f.label 'Tipologia Lavoro:' %><br>
+            <%= f.collection_select(:work_worker_id, WorkWorker.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+        <div class='field'>
+          <%= f.label 'Data Assunzione:' %><br>
+          <%= f.text_field :work_employee_date, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Luogo di Lavoro:' %><br>
+          <%= f.text_field :work_workplace, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            Amministrativo
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Importo:' %><br>
+          <%= f.text_field :payment, class: 'form-control' %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Tipologia Pagamento:' %><br>
+          <%= f.collection_select(:payment_typology_id, PaymentTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            &nbsp;
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Categoria:' %><br>
+          <%= f.collection_select(:category_id, Category.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+        <div class='field'>
+          <%= f.label 'Anno Iscrizione:' %><br>
+          <%= f.collection_select(:subscription_year_id, SubscriptionYear.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            Attivazione
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Tipologia Pratica:' %><br>
+          <%= f.collection_select(:practise_typology_id, PractiseTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            &nbsp;
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Ufficio:' %><br>
+          <%= f.collection_select(:uvl_office_id, UvlOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            Privacy
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Privacy 1:' %><br>
+          <%= f.collection_select(:privacy_one_id, PrivacyOne.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          <br>
+          Datore di Lavoro - Enti Previdenziali ed Assistenziali - Enti Bilaterali -Enti Paritetici Contrattuali -
+          Articolazioni Sindacali
+        </div>
+        <br>
+        <div class='field'>
+          <%= f.label 'Privacy 2:' %><br>
+          <%= f.collection_select(:privacy_two_id, PrivacyTwo.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          <br>
+          Istituzionale Promozionale - a mezzo di strumenti tecnologici avanzati quali fax, Email, SMS, MMS e altri sistemi di
+          comunicazione elettronica (WhatsApp, Telegram, ecc.).
+        </div>
+      </div>
+      <div class='col col-lg-6'>
+        <h4>
+          <strong id='text-info'>
+            &nbsp;
+          </strong>
+        </h4>
+        <br>
+        <div class='field'>
+          <%= f.label 'Privacy 3:' %><br>
+          <%= f.collection_select(:privacy_three_id, PrivacyThree.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          <br>
+          Patronato uvl, ai CAAF CGIL SRL costituiti dalla CGIL, al Sunia, all’Auser e alla Federconsumatori ecc. - a mezzo di
+          strumenti tecnologici avanzati quali fax, Email, SMS, MMS e altri sistemi di comunicazione elettronica (WhatsApp,
+          Telegram, ecc.).
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col col-lg-9'>
+        <div class='field'>
+          <%= f.label 'Note:' %><br>
+          <%= f.text_area :note %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr id='hr-info'>
+  <div class='row'>
+    <div class='col col-lg-12'>
+      <div class='col col-lg-6'>
+        <div class='form-group'>
+          <%= button_tag(type: 'submit', class: 'btn btn-success btn-sm') do %>
+          <%= fa_icon('save') %>&nbsp;Salva
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="col col-lg-4" id='condensed-lite-green-bg'>
+    <h4>
+      <strong id='text-info'>
+        Tariffario
+      </strong>
+    </h4>
+    <br>
+    <table class='table table-striped table-hover'>
+      <thead>
+        <tr>
+          <th>Categoria:</th>
+          <th>Tipologia:</th>
+          <th>Tariffa:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tariffs.each do |tariff| %>
+        <tr>
+          <td>
+            <%= tariff.category.name %>
+          </td>
+          <td>
+            <%= tariff.typology %>
+          </td>
+          <td>
+            <%= number_to_currency(tariff.amount) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

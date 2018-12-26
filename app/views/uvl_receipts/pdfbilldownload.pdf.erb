@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <%= stylesheet_link_tag wicked_pdf_asset_base64('pdfbilldownload') %>
+  </head>
+  <body>
+    <div id='page'>
+      <div id='header'>
+        <div id='logo'>
+          <%= inline_svg('header_ricevuta_uvl.svg', size: '170mm * 15mm', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        </div>
+        <hr>
+        <br>
+        <div>
+          <h3>
+            Ricevute Liberalit&agrave;
+            <br>
+            <br>
+            Distinta del <%= Date.today.strftime('%d/%m/%Y') %>
+          </h3>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <br>
+      <br>
+      <div class='row'>
+        <table>
+          <thead>
+            <tr>
+              <th>Numero:</th>
+              <th>Data:</th>
+              <th>Nome e Cognome:</th>
+              <th>Codice Fiscale:</th>
+              <th>Pratica:</th>
+              <th>Pagamento:</th>
+              <th>Ammontare:</th>
+              <th>Note:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- INIZIALIZZAZIONE VARIABILI -->
+            <% @totalegenerale = 0 %>
+            <% @contantitotale = 0 %>
+            <% @postotale = 0 %>
+            <% @bonificototale = 0 %>
+            <% @ccpostaletotale = 0 %>
+            <% @altrototale = 0 %>
+            <!-- RICERCA -->
+            <% @uvl_receipts.each do |uvl_receipt| %>
+              <tr>
+                <td><%= uvl_receipt.name %></td>
+                <td><%= uvl_receipt.date.strftime('%d/%m/%Y') %></td>
+                <td><%= uvl_receipt.customer_name %>&nbsp;<%= uvl_receipt.customer_forname %></td>
+                <td><%= uvl_receipt.customer_fiscal_code %></td>
+                <td><%= uvl_receipt.practise_typology.name %></td>
+                <td><%= uvl_receipt.payment_typology.name %></td>
+                <td><%= number_to_currency(uvl_receipt.payment) %></td>
+                <td><%= truncate(uvl_receipt.note, length: 50) %></td>
+              </tr>
+              <!-- NOME UFFICIO -->
+              <% @ufficio = uvl_receipt.uvl_office.name %>
+              <!-- TOTALE GENERALE -->
+              <% @totale = uvl_receipt.payment %>
+              <% @totalegenerale = @totale + @totalegenerale %>
+              <!-- CONTANTI -->
+              <% if uvl_receipt.payment_typology_id == 1 %>
+                <% @contanti = uvl_receipt.payment %>
+                <% @contantitotale = @contanti + @contantitotale %>
+              <% end %>
+              <!-- POS -->
+              <% if uvl_receipt.payment_typology_id == 2 %>
+                <% @pos = uvl_receipt.payment %>
+                <% @postotale = @pos + @postotale %>
+              <% end %>
+              <% if uvl_receipt.payment_typology_id == 3 %>
+                <% @bonifico = uvl_receipt.payment %>
+                <% @bonificototale = @bonifico + @bonificototale %>
+              <% end %>
+              <% if uvl_receipt.payment_typology_id == 4 %>
+                <% @ccpostale = uvl_receipt.payment %>
+                <% @ccpostaletotale = @ccpostale + @ccpostaletotale %>
+              <% end %>
+              <% if uvl_receipt.payment_typology_id == 5 %>
+                <% @altro = uvl_receipt.payment %>
+                <% @altrototale = @altro + @altrototale %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <hr>
+        <h3>
+          <strong>
+            <%= current_user.institute %>
+            &nbsp;-&nbsp;
+            <%= @ufficio %>
+          </strong>
+        </h3>
+        <h3>
+          <strong>
+            Periodo:&nbsp;
+            <%= @uvl_receipts.first.date.strftime('%d/%m/%Y') %>
+            &nbsp;-&nbsp;
+            <%= @uvl_receipts.last.date.strftime('%d/%m/%Y') %>
+          </strong>
+        </h3>
+        <hr>
+        <strong>
+          Contanti/Assegno: <%= number_to_currency(@contantitotale) %>
+          &nbsp;-&nbsp;
+          POS: <%= number_to_currency(@postotale) %>
+          &nbsp;-&nbsp;
+          Bonifico: <%= number_to_currency(@bonificototale) %>
+          &nbsp;-&nbsp;
+          CC Postale: <%= number_to_currency(@ccpostaletotale) %>
+          &nbsp;-&nbsp;
+          Altro: <%= number_to_currency(@altrototale) %>
+        </strong>
+        <h2>
+          <span>
+            Totale: <%= number_to_currency(@totalegenerale) %>
+          </span>
+        </h2>
+      </div>
+      <br>
+      <br>
+      <table class='center-border'>
+        <thead>
+          <tr class='red'>
+            <th class='red'>TAGLIO</th>
+            <th class='red'>500&nbsp;</th>
+            <th class='red'>100&nbsp;</th>
+            <th class='red'>50&nbsp;&nbsp;</th>
+            <th class='red'>20&nbsp;&nbsp;</th>
+            <th class='red'>10&nbsp;&nbsp;</th>
+            <th class='red'>5&nbsp;&nbsp;&nbsp;</th>
+            <th class='red'>2&nbsp;&nbsp;&nbsp;</th>
+            <th class='red'>1&nbsp;&nbsp;&nbsp;</th>
+            <th class='red'>5&nbsp;&nbsp;&nbsp;</th>
+            <th class='red'>0,50&nbsp;</th>
+            <th class='red'>0,20&nbsp;</th>
+            <th class='red'>0,10&nbsp;</th>
+            <th class='red'>0,05&nbsp;</th>
+            <th class='red'>0,02&nbsp;</th>
+            <th class='red'>0,01&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class='red'>
+            <td class='red'><strong>N&nbsp;</strong></td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+          </tr>
+          <tr class='red'>
+            <td class='red'><strong>EURO</strong></td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <footer>
+        <hr>
+        <small id='smallandlite'>
+          operatore:&nbsp;<%= current_user.name %>
+        </small>
+        <br>
+        <small>
+          <strong>OpisP1</strong> web-application to manage receipts and subscriptions - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
+        </small>
+      </footer>
+    </div>
+  </body>
+</html>
