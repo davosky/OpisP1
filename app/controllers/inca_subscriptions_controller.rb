@@ -2,6 +2,7 @@ class IncaSubscriptionsController < ApplicationController
   before_action :set_inca_subscription, only: %i[show edit update destroy]
 
   def index
+    @tariffs = Tariff.all.order(position: 'ASC')
     @user = current_user
       @q = IncaSubscription.ransack(params[:q])
       @inca_subscriptions = @q.result(distinct: true)
@@ -10,6 +11,7 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def show;
+    @tariffs = Tariff.all.order(position: 'ASC')
     respond_to do |format|
       format.html
       format.json
@@ -18,6 +20,7 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def bill_download
+      @tariffs = Tariff.all.order(position: 'ASC')
       @q = IncaSubscription.ransack(params[:q])
       @inca_subscriptions = @q.result(distinct: true)
                               .order(created_at: 'DESC')
@@ -45,6 +48,7 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def bill_downloadnidil
+      @tariffs = Tariff.all.order(position: 'ASC')
       @q = IncaSubscription.ransack(params[:q])
       @inca_subscriptions = @q.result(distinct: true)
                               .order(created_at: 'DESC')
@@ -78,10 +82,12 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def edit;
+    @tariffs = Tariff.all.order(position: 'ASC')
     authorize! :update, @inca_subscription
   end
 
   def create
+    @tariffs = Tariff.all.order(position: 'ASC')
     @user = current_user
 
     @inca_subscription = @user.inca_subscriptions.build(inca_subscription_params)
@@ -101,6 +107,7 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def update
+    @tariffs = Tariff.all.order(position: 'ASC')
     respond_to do |format|
       if @inca_subscription.update(inca_subscription_params)
         format.html { redirect_to @inca_subscription, notice: 'Inca subscription was successfully updated.' }
@@ -113,6 +120,7 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def destroy
+    @tariffs = Tariff.all.order(position: 'ASC')
     @inca_subscription.destroy
     respond_to do |format|
       format.html { redirect_to inca_subscriptions_url, notice: 'Inca subscription was successfully destroyed.' }

@@ -2,6 +2,7 @@ class UvlSubscriptionsController < ApplicationController
   before_action :set_uvl_subscription, only: [:show, :edit, :update, :destroy]
 
   def index
+    @tariffs = Tariff.all.order(position: 'ASC')
     @user = current_user
     @q = UvlSubscription.ransack(params[:q])
     @uvl_subscriptions = @q.result(distinct: true)
@@ -10,6 +11,7 @@ class UvlSubscriptionsController < ApplicationController
   end
 
   def show
+    @tariffs = Tariff.all.order(position: 'ASC')
     respond_to do |format|
       format.html
       format.json
@@ -18,6 +20,7 @@ class UvlSubscriptionsController < ApplicationController
   end
 
   def bill_download
+    @tariffs = Tariff.all.order(position: 'ASC')
     @q = UvlSubscription.ransack(params[:q])
     @uvl_subscriptions = @q.result(distinct: true)
                            .order(created_at: 'DESC')
@@ -45,6 +48,7 @@ class UvlSubscriptionsController < ApplicationController
   end
 
   def bill_downloadnidil
+    @tariffs = Tariff.all.order(position: 'ASC')
     @q = UvlSubscription.ransack(params[:q])
     @uvl_subscriptions = @q.result(distinct: true)
                            .order(created_at: 'DESC')
@@ -78,10 +82,12 @@ class UvlSubscriptionsController < ApplicationController
   end
 
   def edit
+    @tariffs = Tariff.all.order(position: 'ASC')
     authorize! :update, @uvl_subscription
   end
 
   def create
+    @tariffs = Tariff.all.order(position: 'ASC')
     @user = current_user
 
     @uvl_subscription = @user.uvl_subscriptions.build(uvl_subscription_params)
@@ -101,6 +107,7 @@ class UvlSubscriptionsController < ApplicationController
   end
 
   def update
+    @tariffs = Tariff.all.order(position: 'ASC')
     respond_to do |format|
       if @uvl_subscription.update(uvl_subscription_params)
         format.html { redirect_to @uvl_subscription, notice: 'Uvl subscription was successfully updated.' }
@@ -113,6 +120,7 @@ class UvlSubscriptionsController < ApplicationController
   end
 
   def destroy
+    @tariffs = Tariff.all.order(position: 'ASC')
     @uvl_subscription.destroy
     respond_to do |format|
       format.html { redirect_to uvl_subscriptions_url, notice: 'Uvl subscription was successfully destroyed.' }

@@ -70,6 +70,11 @@ table {
     text-align: center;
 }
 
+#p-small {
+    font-family: Arial, sans-serif;
+    font-size: 7pt;
+}
+
 .page {
     width: 21cm;
     min-height: 29.7cm;

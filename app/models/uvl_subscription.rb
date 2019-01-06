@@ -30,6 +30,7 @@ class UvlSubscription < ActiveRecord::Base
   validates :customer_birth_place, presence: true
   validates :customer_birth_date, presence: true
   validates :customer_fiscal_code, presence: true, codice_fiscale_format: true
+  validates :sex_id, presence: true
   validates :customer_address, presence: true
   validates :customer_zip, presence: true
   validates :customer_city, presence: true
