@@ -54,7 +54,7 @@
           </tbody>
         </table>
         <br>
-        <%= will_paginate @uvl_subscriptions, renderer: BootstrapPagination::Rails %>
+        <%= will_paginate @uvl_subscriptions, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
     </div>
   </div>
   <div id='text-centered'>

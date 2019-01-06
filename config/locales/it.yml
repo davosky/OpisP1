@@ -2,10 +2,6 @@
 it:
   activerecord:
     attributes:
-      will_paginate:
-        previous_label: "Precedente"
-        next_label: "Prossimo"
-        page_gap: "…"
       inca_receipt:
         inca_office_id: UFFICIO
         customer_name: NOME
