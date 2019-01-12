@@ -79,6 +79,9 @@ it:
         privacy_one_id: PRIVACY 1
         privacy_two_id: PRIVACY 2
         privacy_three_id: PRIVACY 3
+        privacy_one: PRIVACY 1
+        privacy_two: PRIVACY 2
+        privacy_three: PRIVACY 3
         note: NOTE
         name: NUMERO
         date: DATA
@@ -121,6 +124,9 @@ it:
         privacy_one_id: PRIVACY 1
         privacy_two_id: PRIVACY 2
         privacy_three_id: PRIVACY 3
+        privacy_one: PRIVACY 1
+        privacy_two: PRIVACY 2
+        privacy_three: PRIVACY 3
         note: NOTE
         name: NUMERO
         date: DATA

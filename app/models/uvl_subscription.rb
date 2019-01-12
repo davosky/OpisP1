@@ -42,5 +42,8 @@ class UvlSubscription < ActiveRecord::Base
   validates :practise_typology_id, presence: true
   validates :subscription_year, presence: true
   validates :category_id, presence: true
+  validates :privacy_one, presence: true
+  validates :privacy_two, presence: true
+  validates :privacy_three, presence: true
   validates_presence_of :cancellation_reason, :if => lambda { self.cancellation_id != nil }
 end

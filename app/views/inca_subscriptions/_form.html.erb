@@ -256,7 +256,7 @@
         </h4>
         <br>
         <div class='field'>
-          <%= f.label 'Privacy 1:' %><br>
+          <%= f.label 'Privacy 1:' %>&nbsp;<strong id='text-danger'>*</strong><br>
           <%= f.collection_select(:privacy_one_id, PrivacyOne.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
           <br>
           Datore di Lavoro - Enti Previdenziali ed Assistenziali - Enti Bilaterali -Enti Paritetici Contrattuali -
@@ -264,7 +264,7 @@
         </div>
         <br>
         <div class='field'>
-          <%= f.label 'Privacy 2:' %><br>
+          <%= f.label 'Privacy 2:' %>&nbsp;<strong id='text-danger'>*</strong><br>
           <%= f.collection_select(:privacy_two_id, PrivacyTwo.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
           <br>
           Istituzionale Promozionale - a mezzo di strumenti tecnologici avanzati quali fax, Email, SMS, MMS e altri sistemi di
@@ -279,7 +279,7 @@
         </h4>
         <br>
         <div class='field'>
-          <%= f.label 'Privacy 3:' %><br>
+          <%= f.label 'Privacy 3:' %>&nbsp;<strong id='text-danger'>*</strong><br>
           <%= f.collection_select(:privacy_three_id, PrivacyThree.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
           <br>
           Patronato Inca, ai CAAF CGIL SRL costituiti dalla CGIL, al Sunia, all’Auser e alla Federconsumatori ecc. - a mezzo di
