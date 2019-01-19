@@ -6,6 +6,9 @@ class Ability
       if user.admin == true
         can :manage, :all
       else
+        if user.institute == 'Ufficio Amministrazione'
+          can :read, :all
+        end
         if user.institute == 'Patronato INCA'
           can :read, IncaReceipt
           can :create, IncaReceipt

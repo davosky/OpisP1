@@ -21,7 +21,9 @@
           <% @inca_receipts.each do |inca_receipt| %>
           <tr>
             <td>
+              <% if current_user.institute != 'Ufficio Amministrazione'  %>
               <%= link_to fa_icon('pencil'), edit_inca_receipt_path(inca_receipt), id: 'text-warning' %>
+              <% end %>
             </td>
             <td>
               <% if inca_receipt.cancellation_id == nil %>

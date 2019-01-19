@@ -21,7 +21,9 @@
           <% @uvl_receipts.each do |uvl_receipt| %>
           <tr>
             <td>
+              <% if current_user.institute != 'Ufficio Amministrazione'  %>
               <%= link_to fa_icon('pencil'), edit_uvl_receipt_path(uvl_receipt), id: 'text-warning' %>
+              <% end %>
             </td>
             <td>
               <% if uvl_receipt.cancellation_id == nil %>

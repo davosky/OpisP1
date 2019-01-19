@@ -22,7 +22,9 @@
             <% @uvl_subscriptions.each do |uvl_subscription| %>
             <tr>
               <td>
+                <% if current_user.institute != 'Ufficio Amministrazione'  %>
                 <%= link_to fa_icon('pencil'), edit_uvl_subscription_path(uvl_subscription), id: 'text-warning' %>
+                <% end %>
               </td>
               <td>
                 <% if uvl_subscription.cancellation_id == nil %>
@@ -66,4 +68,3 @@
       </small>
     </h6>
   </div>
-  

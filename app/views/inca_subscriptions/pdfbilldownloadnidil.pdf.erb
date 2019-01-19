@@ -92,7 +92,11 @@
         <hr>
         <h3>
           <strong>
+            <% if current_user.institute != 'Ufficio Amministrazione' %>
             <%= current_user.institute %>
+            <% else %>
+            Ufficio
+            <% end %>
             &nbsp;-&nbsp;
             <%= @ufficio %>
           </strong>

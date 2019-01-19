@@ -35,6 +35,7 @@
               <th>Categoria:</th>
               <th>Pagamento:</th>
               <th>Ammontare:</th>
+              <th>Note:</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +56,7 @@
                 <td><%= uvl_subscription.category.name %></td>
                 <td><%= uvl_subscription.payment_typology.name %></td>
                 <td><%= number_to_currency(uvl_subscription.payment) %></td>
+                <td><%= truncate(uvl_subscription.note, length: 45) %></td>
               </tr>
               <!-- NOME UFFICIO -->
               <% @ufficio = uvl_subscription.uvl_office.name %>
@@ -90,7 +92,11 @@
         <hr>
         <h3>
           <strong>
+            <% if current_user.institute != 'Ufficio Amministrazione' %>
             <%= current_user.institute %>
+            <% else %>
+            Ufficio
+            <% end %>
             &nbsp;-&nbsp;
             <%= @ufficio %>
           </strong>

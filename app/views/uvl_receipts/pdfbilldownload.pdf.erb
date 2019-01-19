@@ -14,7 +14,7 @@
         <br>
         <div>
           <h3>
-            Ricevute Liberalit&agrave;
+            Ricevute Contributi Sostegno Attivit&agrave; Assistenza
             <br>
             <br>
             Distinta del <%= Date.today.strftime('%d/%m/%Y') %>
@@ -93,7 +93,11 @@
         <hr>
         <h3>
           <strong>
+            <% if current_user.institute != 'Ufficio Amministrazione' %>
             <%= current_user.institute %>
+            <% else %>
+            Ufficio
+            <% end %>
             &nbsp;-&nbsp;
             <%= @ufficio %>
           </strong>

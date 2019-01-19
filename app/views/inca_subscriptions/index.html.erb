@@ -22,7 +22,9 @@
             <% @inca_subscriptions.each do |inca_subscription| %>
             <tr>
               <td>
+                <% if current_user.institute != 'Ufficio Amministrazione'  %>
                 <%= link_to fa_icon('pencil'), edit_inca_subscription_path(inca_subscription), id: 'text-warning' %>
+                <% end %>
               </td>
               <td>
                 <% if inca_subscription.cancellation_id == nil %>
@@ -66,4 +68,3 @@
       </small>
     </h6>
   </div>
-  

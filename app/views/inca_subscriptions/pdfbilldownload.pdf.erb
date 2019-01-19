@@ -35,6 +35,7 @@
               <th>Categoria:</th>
               <th>Pagamento:</th>
               <th>Ammontare:</th>
+              <th>Note:</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +56,7 @@
                 <td><%= inca_subscription.category.name %></td>
                 <td><%= inca_subscription.payment_typology.name %></td>
                 <td><%= number_to_currency(inca_subscription.payment) %></td>
+                <td><%= truncate(inca_subscription.note, length: 45) %></td>
               </tr>
               <!-- NOME UFFICIO -->
               <% @ufficio = inca_subscription.inca_office.name %>
@@ -90,7 +92,11 @@
         <hr>
         <h3>
           <strong>
+            <% if current_user.institute != 'Ufficio Amministrazione' %>
             <%= current_user.institute %>
+            <% else %>
+            Ufficio
+            <% end %>
             &nbsp;-&nbsp;
             <%= @ufficio %>
           </strong>
@@ -134,14 +140,6 @@
             <th class='red'>20&nbsp;&nbsp;</th>
             <th class='red'>10&nbsp;&nbsp;</th>
             <th class='red'>5&nbsp;&nbsp;&nbsp;</th>
-            <th class='red'>2&nbsp;&nbsp;&nbsp;</th>
-            <th class='red'>1&nbsp;&nbsp;&nbsp;</th>
-            <th class='red'>0,50</th>
-            <th class='red'>0,20</th>
-            <th class='red'>0,10</th>
-            <th class='red'>0,05</th>
-            <th class='red'>0,02</th>
-            <th class='red'>0,01</th>
           </tr>
         </thead>
         <tbody>
@@ -153,25 +151,9 @@
             <td class='red'>&nbsp;</td>
             <td class='red'>&nbsp;</td>
             <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
           </tr>
           <tr class='red'>
             <td class='red'><strong>EURO</strong></td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
-            <td class='red'>&nbsp;</td>
             <td class='red'>&nbsp;</td>
             <td class='red'>&nbsp;</td>
             <td class='red'>&nbsp;</td>
