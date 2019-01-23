@@ -132,6 +132,51 @@ it:
         date: DATA
         user_id: OPERATORE
         institute: ISTITUTO
+      generic_subscription:
+        subscription_typology_id: TIPOLOGIA SOTTOSCRIZIONE
+        generic_office_id: UFFICIO
+        customer_name: NOME
+        customer_forname: COGNOME
+        sex_id: SESSO
+        customer_birth_place: LUOGO DI NASCITA
+        customer_birth_date: DATA DI NASCITA
+        customer_fiscal_code: CODICE FISCALE
+        customer_address: INDIRIZZO
+        customer_zip: CAP
+        customer_city: COMUNE
+        customer_province: PROVINCIA
+        customer_nationality: CITTADINANZA
+        customer_phone: TELEFONO
+        customer_mobile: CELLULARE
+        customer_email: E-MAIL
+        company_name: AZIENDA
+        company_address: INDIRIZZO AZIENDA
+        company_zip: CAP AZIENDA
+        company_city: COMUNE AZIENDA
+        company_province: PROVINCIA AZIENDA
+        company_typology_id: TIPOLOGIA AZIENDA
+        work_qualify_id: QUALIFICA
+        work_level_id: LIVELLO
+        work_contract: CONTRATTO
+        work_worker_id: TIPOLOGIA LAVORO
+        work_employee_date: DATA ASSUNZIONE
+        work_workplace: LUOGO LAVORO
+        payment: AMMONTARE
+        payment_typology_id: TIPOLOGIA PAGAMENTO
+        category_id: CATEGORIA
+        subscription_year: ANNO ISCRIZIONE
+        generic_practise_id: TIPOLOGIA PRATICA
+        privacy_one_id: PRIVACY 1
+        privacy_two_id: PRIVACY 2
+        privacy_three_id: PRIVACY 3
+        privacy_one: PRIVACY 1
+        privacy_two: PRIVACY 2
+        privacy_three: PRIVACY 3
+        note: NOTE
+        name: NUMERO
+        date: DATA
+        user_id: OPERATORE
+        institute: ISTITUTO
     errors:
       messages:
         record_invalid: 'Validazione fallita: %{errors}'

@@ -68,6 +68,24 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'GenericOffice' do
+    visible true
+    label 'Ufficio GENERICO'
+    label_plural 'Uffici GENERICI'
+    configure :name do
+      label 'Ufficio:'
+    end
+    configure :position do
+      label 'Posizione:'
+    end
+    configure :created_at do
+      label 'Creato il:'
+    end
+    configure :updated_at do
+      label 'Aggiornato il:'
+    end
+  end
+
   config.model 'PaymentTypology' do
     visible true
     label 'Tipologia Pagamento'
@@ -449,6 +467,24 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'GenericPractise' do
+    visible true
+    label 'Tipologia Pratica GENERICA'
+    label_plural 'Tipologie Pratiche GENERICHE'
+    configure :name do
+      label 'Pratica GENERICA:'
+    end
+    configure :position do
+      label 'Posizione:'
+    end
+    configure :created_at do
+      label 'Creato il:'
+    end
+    configure :updated_at do
+      label 'Aggiornato il:'
+    end
+  end
+
   config.model 'PrivacyOne' do
     visible true
     label 'Privacy 1'
@@ -772,6 +808,150 @@ RailsAdmin.config do |config|
       label 'Anno Iscrizione:'
     end
     configure :practise_typology do
+      label 'Tipologia Pratica:'
+    end
+    configure :privacy_one do
+      label 'Privacy 1:'
+    end
+    configure :privacy_two do
+      label 'Privacy 2:'
+    end
+    configure :privacy_three do
+      label 'Privacy 3:'
+    end
+    configure :note do
+      label 'Note:'
+    end
+    configure :cancellation do
+      label 'Annullamento:'
+    end
+    configure :cancellation_reason do
+      label 'Motivo Annullamento:'
+    end
+    configure :pdf do
+      label 'Allegato PDF:'
+    end
+    configure :subscription_typology do
+      label 'Tipologia Iscrizione:'
+    end
+    configure :sex do
+      label 'Sesso:'
+    end
+    configure :created_at do
+      label 'Creato il:'
+    end
+    configure :updated_at do
+      label 'Aggiornato il:'
+    end
+  end
+
+  config.model 'GenericSubscription' do
+    visible true
+    label 'Sottoscrizione GENERICA'
+    label_plural 'Sottoscrizioni GENERICHE'
+    configure :name do
+      label 'Numero:'
+    end
+     configure :date do
+      label 'Data:'
+    end
+    configure :institute do
+      label 'Istituto:'
+    end
+    configure :generic_office do
+      label 'Ufficio:'
+    end
+    configure :user do
+      label 'Operatore:'
+    end
+    configure :customer_name do
+      label 'Nome:'
+    end
+    configure :customer_forname do
+      label 'Cognome:'
+    end
+    configure :customer_birth_place do
+      label 'Luogo di nascita:'
+    end
+    configure :customer_birth_date do
+      label 'Data di Nascita:'
+    end
+    configure :customer_fiscal_code do
+      label 'Codice Fiscale:'
+    end
+    configure :customer_nationality do
+      label 'Cittadinanza:'
+    end
+    configure :customer_address do
+      label 'Indirizzo:'
+    end
+    configure :customer_zip do
+      label 'Cap:'
+    end
+    configure :customer_city do
+      label 'Comune:'
+    end
+    configure :customer_province do
+      label 'Provincia:'
+    end
+    configure :customer_phone do
+      label 'Telefono:'
+    end
+    configure :customer_mobile do
+      label 'Cellulare:'
+    end
+    configure :customer_email do
+      label 'E-Mail:'
+    end
+    configure :company_name do
+      label 'Azienda:'
+    end
+    configure :company_address do
+      label 'Indirizzo Azienda:'
+    end
+    configure :company_zip do
+      label 'Cap Azienda:'
+    end
+    configure :company_city do
+      label 'Comune Azienda:'
+    end
+    configure :company_province do
+      label 'Provincia Azienda:'
+    end
+    configure :company_typology do
+      label 'Tipologia Azienda:'
+    end
+    configure :work_qualify do
+      label 'Qualifiuca:'
+    end
+    configure :work_level do
+      label 'Livello:'
+    end
+    configure :work_contract do
+      label 'Contratto:'
+    end
+    configure :work_worker do
+      label 'Tipologia Lavoro:'
+    end
+    configure :work_employee_date do
+      label 'Data Assunzione:'
+    end
+    configure :work_workplace do
+      label 'Luogo di Lavoro:'
+    end
+    configure :payment do
+      label 'Ammontare:'
+    end
+    configure :payment_typology do
+      label 'Tipologia Pagamento:'
+    end
+    configure :category do
+      label 'Categoria:'
+    end
+    configure :subscription_year do
+      label 'Anno Iscrizione:'
+    end
+    configure :generic_practise do
       label 'Tipologia Pratica:'
     end
     configure :privacy_one do
