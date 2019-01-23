@@ -182,6 +182,34 @@
         <li>
           <hr id='hr-grey'>
         </li>
+        <% if current_user.institute == 'ALTRI SERVIZI' || current_user.admin == true %>
+        <li>
+          <h3>
+            <%= inline_svg('icon_generic.svg', size: '28px * 28px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+            &nbsp;<strong>ALTRI</strong>
+          </h3>
+        </li>
+        <li class='dropdown'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' id='condensed'>
+            <%= fa_icon('address-card') %><br>
+            <strong>SOTTOSCRIZIONI</strong
+          </a>
+          <ul class='dropdown-menu' role='menu'>
+            <li>
+              <%= link_to fa_icon('pencil') + ' ' + ' NUOVA SOTTOSCRIZIONE', new_generic_subscription_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('list') + ' ' + ' ELENCO SOTTOSCRIZIONI', generic_subscriptions_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('download') + ' ' + ' SCARICO SOTTOSCRIZIONI (Altre Categorie)', bill_download_generic_subscriptions_path %>
+            </li>
+            <li>
+              <%= link_to fa_icon('download') + ' ' + ' SCARICO SOTTOSCRIZIONI (NIDIL)', bill_downloadnidil_generic_subscriptions_path %>
+            </li>
+          </ul>
+        </li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -27,4 +27,10 @@ Rails.application.routes.draw do
       get :bill_downloadnidil
     end
   end
+  resources :generic_subscriptions do
+    collection do
+      get :bill_download
+      get :bill_downloadnidil
+    end
+  end
 end

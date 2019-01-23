@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181226145127) do
+ActiveRecord::Schema.define(version: 20190123102303) do
 
   create_table "cancellations", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -31,6 +31,72 @@ ActiveRecord::Schema.define(version: 20181226145127) do
     t.integer  "position",   limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "generic_offices", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "position",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "generic_practises", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "position",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "generic_subscriptions", force: :cascade do |t|
+    t.integer  "name",                     limit: 4
+    t.integer  "generic_office_id",        limit: 4
+    t.integer  "subscription_typology_id", limit: 4
+    t.string   "customer_name",            limit: 255
+    t.string   "customer_forname",         limit: 255
+    t.integer  "sex_id",                   limit: 4
+    t.string   "customer_birth_place",     limit: 255
+    t.date     "customer_birth_date"
+    t.string   "customer_fiscal_code",     limit: 255
+    t.string   "customer_nationality",     limit: 255
+    t.string   "customer_address",         limit: 255
+    t.string   "customer_zip",             limit: 255
+    t.string   "customer_city",            limit: 255
+    t.string   "customer_province",        limit: 255
+    t.string   "customer_phone",           limit: 255
+    t.string   "customer_mobile",          limit: 255
+    t.string   "customer_email",           limit: 255
+    t.string   "company_name",             limit: 255
+    t.string   "company_address",          limit: 255
+    t.string   "company_zip",              limit: 255
+    t.string   "company_city",             limit: 255
+    t.string   "company_province",         limit: 255
+    t.integer  "company_typology_id",      limit: 4
+    t.integer  "work_qualify_id",          limit: 4
+    t.integer  "work_level_id",            limit: 4
+    t.string   "work_contract",            limit: 255
+    t.integer  "work_worker_id",           limit: 4
+    t.date     "work_employee_date"
+    t.string   "work_workplace",           limit: 255
+    t.decimal  "payment",                                precision: 8, scale: 2, default: 0.0
+    t.integer  "payment_typology_id",      limit: 4
+    t.integer  "category_id",              limit: 4
+    t.integer  "subscription_year_id",     limit: 4
+    t.integer  "generic_practise_id",      limit: 4
+    t.integer  "privacy_one_id",           limit: 4
+    t.integer  "privacy_two_id",           limit: 4
+    t.integer  "privacy_three_id",         limit: 4
+    t.text     "note",                     limit: 65535
+    t.integer  "cancellation_id",          limit: 4
+    t.string   "cancellation_reason",      limit: 255
+    t.date     "date"
+    t.integer  "user_id",                  limit: 4
+    t.string   "institute",                limit: 255
+    t.datetime "created_at",                                                                   null: false
+    t.datetime "updated_at",                                                                   null: false
+    t.string   "pdf_file_name",            limit: 255
+    t.string   "pdf_content_type",         limit: 255
+    t.integer  "pdf_file_size",            limit: 8
+    t.datetime "pdf_updated_at"
   end
 
   create_table "inca_offices", force: :cascade do |t|

@@ -1,0 +1,18 @@
+<div class='panel panel-default'>
+    <div class='panel-body'>
+        <h4>
+            <%= inline_svg('icon_generic.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+            &nbsp;Altri Servizi&nbsp;<strong id='text-primary'>&nbsp;
+                <%= fa_icon('pencil') %>&nbsp;Modifica Sottoscrizione:</strong>
+            <span class='pull-right'>
+                <%= link_to fa_icon('arrow-left') + ' ' + fa_icon('list') + '  ' + ' Ritorna all\'elenco', generic_subscriptions_path, class: 'btn btn-default btn-sm' %>
+            </span>
+        </h4>
+        <hr id='hr-grey'>
+        <% if @generic_subscription.cancellation_id != nil %>
+        <%= render 'cancelled_form' %>
+        <% else %>
+        <%= render 'cancellation_form' %>
+        <% end %>
+    </div>
+</div>
