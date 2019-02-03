@@ -104,9 +104,9 @@
         <h3>
           <strong>
             Periodo:&nbsp;
-            <%= @uvl_subscriptions.last.date.strftime('%d/%m/%Y') %>
+            <%= @uvl_subscriptions.last.date.beginning_of_month.strftime('%d/%m/%Y') %>
             &nbsp;-&nbsp;
-            <%= @uvl_subscriptions.first.date.strftime('%d/%m/%Y') %>
+            <%= @uvl_subscriptions.first.date.end_of_month.strftime('%d/%m/%Y') %>
           </strong>
         </h3>
         <hr>

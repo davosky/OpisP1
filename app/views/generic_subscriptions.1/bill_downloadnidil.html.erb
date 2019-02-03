@@ -1,13 +1,13 @@
 <div class='panel panel-default'>
   <div class='panel-body'>
     <h4>
-      <%= inline_svg('icon_inca.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
-      &nbsp;Patronato INCA&nbsp;<strong id='text-primary'>&nbsp;<%= fa_icon('download') %>&nbsp;Scarico Ricevute Liberalit&agrave:</strong>
+        <%= inline_svg('icon_generic.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+        &nbsp;Altri Servizi&nbsp;<strong id='text-primary'>&nbsp;<%= fa_icon('download') %>&nbsp;Scarico Sottoscrizioni (NIDIL):</strong>
     </h4>
     <hr id='hr-grey'>
     <div class='row'>
       <div class='col col-lg-12'>
-        <%= search_form_for @q, id: 'search-form', url: bill_download_inca_receipts_path do |f| %>
+        <%= search_form_for @q, id: 'search-form', url: bill_downloadnidil_generic_subscriptions_path do |f| %>
         <div class='col col-lg-3'>
           <div class='field'>
             <%= f.label 'Data Inizio:' %><br>
@@ -18,22 +18,20 @@
             <%= f.text_field :date_lteq, class: 'datepicker form-control', id: 'dateend' %>
           </div>
         </div>
-        <div class='col col-lg-8'>
+        <div class='col col-lg-4'>
           <div class='field'>
             <%= f.label 'Ufficio:' %>
             <br>
-            <%= f.collection_select(:inca_office_id_eq, IncaOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control', :id => 'office-id'}) %>
+            <%= f.collection_select(:generic_office_id_eq, GenericOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control', :id => 'office-id'}) %>
           </div>
           <br>
           <div class='form-actions'>
             <%= button_tag type: 'submit', class: 'btn btn-default btn-sm' do %>
             <%= fa_icon('search') %>&nbsp;Cerca
           <% end %>
-          <% if @inca_receipts.count > 0 %>
+          <% if @generic_subscriptions.count > 0 %>
             &nbsp;
-            <%= link_to fa_icon('print') + ' ' + ' Stampa la Distinta', bill_download_inca_receipts_path(request.parameters.merge(format: 'pdf')), target: 'new', class: 'btn btn-default btn-sm', id: 'print' %>
-            &nbsp;
-            <%= link_to fa_icon('table') + ' ' + ' Esporta in Excel', bill_download_inca_receipts_path(request.parameters.merge(format: 'xlsx')), target: 'new', class: 'btn btn-default btn-sm', id: 'export' %>
+            <%= link_to fa_icon('print') + ' ' + ' Stampa la Distinta', bill_downloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'pdf')), target: 'new', class: 'btn btn-default btn-sm', id: 'print' %>
           <% end %>
         </div>
       </div>
@@ -51,24 +49,26 @@
           <th>Data:</th>
           <th>Nome e Cognome:</th>
           <th>Codice Fiscale:</th>
+          <th>Categoria</th>
           <th>Ammontare:</th>
           <th>Note:</th>
         </tr>
       </thead>
       <tbody>
-        <% @inca_receipts.each do |inca_receipt| %>
+        <% @generic_subscriptions.each do |generic_subscription| %>
           <tr>
-            <td><%= inca_receipt.name %></td>
-            <td><%= inca_receipt.date.strftime('%d/%m/%Y') %></td>
-            <td><%= inca_receipt.customer_name %>&nbsp;<%= inca_receipt.customer_forname %></td>
-            <td><%= inca_receipt.customer_fiscal_code %></td>
-            <td><%= number_to_currency(inca_receipt.payment) %></td>
-            <td><%= inca_receipt.note %></td>
+            <td><%= generic_subscription.name %></td>
+            <td><%= generic_subscription.date.strftime('%d/%m/%Y') %></td>
+            <td><%= generic_subscription.customer_name %>&nbsp;<%= generic_subscription.customer_forname %></td>
+            <td><%= generic_subscription.customer_fiscal_code %></td>
+            <td><%= generic_subscription.category.name %></td>
+            <td><%= number_to_currency(generic_subscription.payment) %></td>
+            <td><%= generic_subscription.note %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @inca_receipts, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
+    <%= will_paginate @generic_subscriptions, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
   </div>
 </div>
 </div>
@@ -95,22 +95,6 @@
   });
 
   $('#print').click(function () {
-    if ($('#office-id').val() == "") {
-      alert("Devi selezionare l'Ufficio e cliccare su Cerca");
-      return false;
-    };
-    if ($('#datestart').val() == "") {
-      alert("Devi selezionare la data di Inizio");
-      return false;
-    };
-    if ($('#dateend').val() == "") {
-      alert("Devi selezionare la data di Fine");
-      return false;
-    };
-    return;
-  });
-
-  $('#export').click(function () {
     if ($('#office-id').val() == "") {
       alert("Devi selezionare l'Ufficio e cliccare su Cerca");
       return false;

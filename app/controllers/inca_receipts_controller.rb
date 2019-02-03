@@ -23,6 +23,7 @@ class IncaReceiptsController < ApplicationController
         format.html
         format.json
         format.pdf { render template: 'inca_receipts/pdfbilldownload', pdf: 'pdfbilldownload' }
+        format.xlsx
       end
     @totale
     @totalegenerale

@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'Ricevute Liberalita uvl') do |sheet|
+  wb.styles do |s|
+  black_cell = s.add_style :bg_color => "ff0000", :fg_color => "FF", :sz => 10, :alignment => { :horizontal=> :center }
+  currency = wb.styles.add_style :num_fmt => 5
+  sheet.add_row ['' ]
+  sheet.add_row ['UVL - RICEVUTE SOTTOSCRIZIONI - NIDIL' ]
+  sheet.add_row ['PERIODO', @uvl_subscriptions.last.date.beginning_of_month.strftime('%d/%m/%Y'), @uvl_subscriptions.first.date.end_of_month.strftime('%d/%m/%Y') ]
+  sheet.add_row ['' ]
+  sheet.add_row ['Ammontare', 'Data', 'Numero', 'Tipologia Pagamento', 'Ufficio', 'Categoria', 'Nome', 'Cognome', 'Codice Fiscale', 'Indirizzo', 'Cap', 'Comune', 'Provincia', 'Note' ], :style => [black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell]
+  @uvl_subscriptions.each do |uvl_subscription|
+    sheet.add_row [uvl_subscription.payment, uvl_subscription.date, uvl_subscription.name, uvl_subscription.payment_typology.name, uvl_subscription.uvl_office.name, uvl_subscription.category.name, uvl_subscription.customer_name, uvl_subscription.customer_forname, uvl_subscription.customer_fiscal_code, uvl_subscription.customer_address, uvl_subscription.customer_zip, uvl_subscription.customer_city, uvl_subscription.customer_province, uvl_subscription.note], :style=> [currency]
+  end
+  end
+end

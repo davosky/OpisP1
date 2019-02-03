@@ -23,6 +23,7 @@ class UvlReceiptsController < ApplicationController
       format.html
       format.json
       format.pdf { render template: 'uvl_receipts/pdfbilldownload', pdf: 'pdfbilldownload' }
+      format.xlsx
     end
     @totale
     @totalegenerale

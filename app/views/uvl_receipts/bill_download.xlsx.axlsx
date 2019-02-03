@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'Ricevute Liberalita uvl') do |sheet|
+  wb.styles do |s|
+  black_cell = s.add_style :bg_color => "ff0000", :fg_color => "FF", :sz => 12, :alignment => { :horizontal=> :center }
+  currency = wb.styles.add_style :num_fmt => 5
+  sheet.add_row ['' ]
+  sheet.add_row ['RICEVUTE UVL' ]
+  sheet.add_row ['PERIODO', @uvl_receipts.last.date.beginning_of_month.strftime('%d/%m/%Y'), @uvl_receipts.first.date.end_of_month.strftime('%d/%m/%Y') ]
+  sheet.add_row ['' ]
+  sheet.add_row ['Ammontare', 'Data', 'Numero', 'Tipologia Pagamento', 'Ufficio', 'Categoria', 'Nome', 'Cognome', 'Codice Fiscale', 'Indirizzo', 'Cap', 'Comune', 'Provincia', 'Note' ], :style => [black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell]
+  @uvl_receipts.each do |uvl_receipt|
+    sheet.add_row [uvl_receipt.payment, uvl_receipt.date, uvl_receipt.name, uvl_receipt.payment_typology.name, uvl_receipt.uvl_office.name, uvl_receipt.category.name, uvl_receipt.customer_name, uvl_receipt.customer_forname, uvl_receipt.customer_fiscal_code, uvl_receipt.customer_address, uvl_receipt.customer_zip, uvl_receipt.customer_city, uvl_receipt.customer_province, uvl_receipt.note], :style=> [currency]
+  end
+  end
+end

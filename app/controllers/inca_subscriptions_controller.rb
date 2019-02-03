@@ -31,6 +31,7 @@ class IncaSubscriptionsController < ApplicationController
         format.html
         format.json
         format.pdf { render template: 'inca_subscriptions/pdfbilldownload', pdf: 'pdfbilldownload' }
+        format.xlsx
       end
     @totale
     @totalegenerale
@@ -59,6 +60,7 @@ class IncaSubscriptionsController < ApplicationController
         format.html
         format.json
         format.pdf { render template: 'inca_subscriptions/pdfbilldownloadnidil', pdf: 'pdfbilldownloadnidil' }
+        format.xlsx
       end
     @totale
     @totalegenerale

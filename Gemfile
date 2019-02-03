@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
 gem 'bootstrap-sass', '~> 3.4'
 gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 gem 'cancancan', '~> 2.3'
@@ -19,6 +21,7 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 gem 'rails_admin-i18n', '~> 1.11', '>= 1.11.2'
 gem 'ransack', '= 1.8.9'
+gem 'rubyzip', '>= 1.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks'

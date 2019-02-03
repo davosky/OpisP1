@@ -11,14 +11,14 @@
         <div class='col col-lg-3'>
           <div class='field'>
             <%= f.label 'Data Inizio:' %><br>
-            <%= f.text_field :date_gteq, class: 'datepicker form-control' %>
+            <%= f.text_field :date_gteq, class: 'datepicker form-control', id: 'datestart' %>
           </div>
           <div class='field'>
             <%= f.label 'Data Fine:' %><br>
-            <%= f.text_field :date_lteq, class: 'datepicker form-control' %>
+            <%= f.text_field :date_lteq, class: 'datepicker form-control', id: 'dateend' %>
           </div>
         </div>
-        <div class='col col-lg-4'>
+        <div class='col col-lg-8'>
           <div class='field'>
             <%= f.label 'Ufficio:' %>
             <br>
@@ -32,6 +32,8 @@
           <% if @generic_subscriptions.count > 0 %>
             &nbsp;
             <%= link_to fa_icon('print') + ' ' + ' Stampa la Distinta', bill_downloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'pdf')), target: 'new', class: 'btn btn-default btn-sm', id: 'print' %>
+            &nbsp;
+            <%= link_to fa_icon('table') + ' ' + ' Esporta in Excel', bill_downloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'xlsx')), target: 'new', class: 'btn btn-default btn-sm', id: 'export' %>
           <% end %>
         </div>
       </div>
@@ -83,12 +85,44 @@
       alert("Devi selezionare l'Ufficio e cliccare su Cerca");
       return false;
     };
+    if ($('#datestart').val() == "") {
+      alert("Devi selezionare la data di Inizio");
+      return false;
+    };
+    if ($('#dateend').val() == "") {
+      alert("Devi selezionare la data di Fine");
+      return false;
+    };
     return;
   });
 
   $('#print').click(function () {
     if ($('#office-id').val() == "") {
       alert("Devi selezionare l'Ufficio e cliccare su Cerca");
+      return false;
+    };
+    if ($('#datestart').val() == "") {
+      alert("Devi selezionare la data di Inizio");
+      return false;
+    };
+    if ($('#dateend').val() == "") {
+      alert("Devi selezionare la data di Fine");
+      return false;
+    };
+    return;
+  });
+
+  $('#export').click(function () {
+    if ($('#office-id').val() == "") {
+      alert("Devi selezionare l'Ufficio e cliccare su Cerca");
+      return false;
+    };
+    if ($('#datestart').val() == "") {
+      alert("Devi selezionare la data di Inizio");
+      return false;
+    };
+    if ($('#dateend').val() == "") {
+      alert("Devi selezionare la data di Fine");
       return false;
     };
     return;

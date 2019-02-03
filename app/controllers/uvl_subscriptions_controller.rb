@@ -31,6 +31,7 @@ class UvlSubscriptionsController < ApplicationController
       format.html
       format.json
       format.pdf { render template: 'uvl_subscriptions/pdfbilldownload', pdf: 'pdfbilldownload' }
+      format.xlsx
     end
     @totale
     @totalegenerale
@@ -59,6 +60,7 @@ class UvlSubscriptionsController < ApplicationController
       format.html
       format.json
       format.pdf { render template: 'uvl_subscriptions/pdfbilldownloadnidil', pdf: 'pdfbilldownloadnidil' }
+      format.xlsx
     end
     @totale
     @totalegenerale

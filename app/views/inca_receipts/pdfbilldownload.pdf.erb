@@ -103,9 +103,9 @@
         <h3>
           <strong>
             Periodo:&nbsp;
-            <%= @inca_receipts.first.date.strftime('%d/%m/%Y') %>
+            <%= @inca_receipts.first.date.beginning_of_month.strftime('%d/%m/%Y') %>
             &nbsp;-&nbsp;
-            <%= @inca_receipts.last.date.strftime('%d/%m/%Y') %>
+            <%= @inca_receipts.last.date.end_of_month.strftime('%d/%m/%Y') %>
           </strong>
         </h3>
         <hr>
