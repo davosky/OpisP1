@@ -37,12 +37,12 @@
                   <thead></thead>
                   <tbody>
                     <tr>
-                      <td>Nome:</td>
-                      <td><%= @uvl_subscription.customer_name %></td>
-                    </tr>
-                    <tr>
                       <td>Cognome:</td>
                       <td><%= @uvl_subscription.customer_forname %></td>
+                    </tr>
+                    <tr>
+                      <td>Nome:</td>
+                      <td><%= @uvl_subscription.customer_name %></td>
                     </tr>
                     <tr>
                       <td>Sesso:</td>
@@ -309,7 +309,7 @@
                 <br>
                 <br>
                 <br>
-                Luogo e data: ____________________________________&nbsp;&nbsp;&nbsp;Firma: _____________________________
+                <strong>Luogo e data:</strong>&nbsp;<%= @uvl_subscription.uvl_office.name %>&nbsp;-&nbsp;<%= @uvl_subscription.date.strftime('%d/%m/%Y') %>&nbsp;&nbsp;&nbsp;<strong>Firma:</strong> _____________________________
               </p>
             </div>
           </div>
