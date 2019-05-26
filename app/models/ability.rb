@@ -28,6 +28,13 @@ class Ability
             generic_subscription.user == user
           end
         end
+        if user.institute == 'NIDIL'
+          can :read, GenericSubscription
+          can :create, GenericSubscription
+          can :update, GenericSubscription do |generic_subscription|
+            generic_subscription.user == user
+          end
+        end
         if user.institute == 'Ufficio Vertenze e Legale'
           can :read, UvlReceipt
           can :create, UvlReceipt
