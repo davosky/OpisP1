@@ -7,7 +7,7 @@ class IncaSubscriptionsController < ApplicationController
       @q = IncaSubscription.ransack(params[:q])
       @inca_subscriptions = @q.result(distinct: true)
                               .order(created_at: 'DESC')
-                              .paginate(page: params[:page], per_page: 10)
+                              .paginate(page: params[:page], per_page: 50)
   end
 
   def show;
@@ -26,7 +26,7 @@ class IncaSubscriptionsController < ApplicationController
                               .order(created_at: 'DESC')
                               .where(cancellation_id: nil)
                               .where.not(category_id: 9)
-                              .paginate(page: params[:page], per_page: 50)
+                              .paginate(page: params[:page], per_page: 500)
       respond_to do |format|
         format.html
         format.json
@@ -55,7 +55,7 @@ class IncaSubscriptionsController < ApplicationController
                               .order(created_at: 'DESC')
                               .where(cancellation_id: nil)
                               .where(category_id: 9)
-                              .paginate(page: params[:page], per_page: 50)
+                              .paginate(page: params[:page], per_page: 500)
       respond_to do |format|
         format.html
         format.json

@@ -4,7 +4,7 @@ class UvlReceiptsController < ApplicationController
   def index
     @user = current_user
     @q = UvlReceipt.ransack(params[:q])
-    @uvl_receipts = @q.result(distinct: true).order(created_at: 'DESC').paginate(page: params[:page], per_page: 10)
+    @uvl_receipts = @q.result(distinct: true).order(created_at: 'DESC').paginate(page: params[:page], per_page: 50)
   end
 
   def show
@@ -18,7 +18,7 @@ class UvlReceiptsController < ApplicationController
   def bill_download
     @user = current_user
     @q = UvlReceipt.ransack(params[:q])
-    @uvl_receipts = @q.result(distinct: true).order(created_at: 'ASC').where(cancellation_id: nil).paginate(page: params[:page], per_page: 50)
+    @uvl_receipts = @q.result(distinct: true).order(created_at: 'ASC').where(cancellation_id: nil).paginate(page: params[:page], per_page: 500)
     respond_to do |format|
       format.html
       format.json
