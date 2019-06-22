@@ -18,7 +18,7 @@ class UvlReceiptsController < ApplicationController
   def bill_download
     @user = current_user
     @q = UvlReceipt.ransack(params[:q])
-    @uvl_receipts = @q.result(distinct: true).order(created_at: 'ASC').where(cancellation_id: nil).paginate(page: params[:page], per_page: 500)
+    @uvl_receipts = @q.result(distinct: true).order(name: 'ASC').where(cancellation_id: nil).paginate(page: params[:page], per_page: 500)
     respond_to do |format|
       format.html
       format.json
