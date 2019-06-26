@@ -49,14 +49,14 @@
             <!-- RICERCA -->
             <% @generic_subscriptions.each do |generic_subscription| %>
               <tr>
-                <td><%= generic_subscription.name %></td>
-                <td><%= generic_subscription.date.strftime('%d/%m/%Y') %></td>
-                <td><%= generic_subscription.customer_name %>&nbsp;<%= generic_subscription.customer_forname %></td>
-                <td><%= generic_subscription.customer_fiscal_code %></td>
-                <td><%= generic_subscription.category.name %></td>
-                <td><%= generic_subscription.payment_typology.name %></td>
-                <td><%= number_to_currency(generic_subscription.payment) %></td>
-                <td><%= truncate(generic_subscription.note, length: 45) %></td>
+                <td id='smallandlite'><%= generic_subscription.name %></td>
+                <td id='smallandlite'><%= generic_subscription.date.strftime('%d/%m/%Y') %></td>
+                <td id='smallandlite'><%= generic_subscription.customer_name %>&nbsp;<%= generic_subscription.customer_forname %></td>
+                <td id='smallandlite'><%= generic_subscription.customer_fiscal_code %></td>
+                <td id='smallandlite'><%= generic_subscription.category.name %></td>
+                <td id='smallandlite'><%= generic_subscription.payment_typology.name %></td>
+                <td id='smallandlite'><%= number_to_currency(generic_subscription.payment) %></td>
+                <td id='smallandlite'><%= truncate(generic_subscription.note, length: 45) %></td>
               </tr>
               <!-- NOME UFFICIO -->
               <% @ufficio = generic_subscription.generic_office.name %>

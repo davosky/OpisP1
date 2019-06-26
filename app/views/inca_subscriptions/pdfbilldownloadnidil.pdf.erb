@@ -49,13 +49,13 @@
             <!-- RICERCA -->
             <% @inca_subscriptions.each do |inca_subscription| %>
               <tr>
-                <td><%= inca_subscription.name %></td>
-                <td><%= inca_subscription.date.strftime('%d/%m/%Y') %></td>
-                <td><%= inca_subscription.customer_name %>&nbsp;<%= inca_subscription.customer_forname %></td>
-                <td><%= inca_subscription.customer_fiscal_code %></td>
-                <td><%= inca_subscription.category.name %></td>
-                <td><%= inca_subscription.payment_typology.name %></td>
-                <td><%= number_to_currency(inca_subscription.payment) %></td>
+                <td id='smallandlite'><%= inca_subscription.name %></td>
+                <td id='smallandlite'><%= inca_subscription.date.strftime('%d/%m/%Y') %></td>
+                <td id='smallandlite'><%= inca_subscription.customer_name %>&nbsp;<%= inca_subscription.customer_forname %></td>
+                <td id='smallandlite'><%= inca_subscription.customer_fiscal_code %></td>
+                <td id='smallandlite'><%= inca_subscription.category.name %></td>
+                <td id='smallandlite'><%= inca_subscription.payment_typology.name %></td>
+                <td id='smallandlite'><%= number_to_currency(inca_subscription.payment) %></td>
                 <td id='smallandlite'><%= truncate(inca_subscription.note, length: 45) %></td>
               </tr>
               <!-- NOME UFFICIO -->

@@ -49,14 +49,14 @@
             <!-- RICERCA -->
             <% @uvl_subscriptions.each do |uvl_subscription| %>
               <tr>
-                <td><%= uvl_subscription.name %></td>
-                <td><%= uvl_subscription.date.strftime('%d/%m/%Y') %></td>
-                <td><%= uvl_subscription.customer_name %>&nbsp;<%= uvl_subscription.customer_forname %></td>
-                <td><%= uvl_subscription.customer_fiscal_code %></td>
-                <td><%= uvl_subscription.category.name %></td>
-                <td><%= uvl_subscription.payment_typology.name %></td>
-                <td><%= number_to_currency(uvl_subscription.payment) %></td>
-                <td><%= truncate(uvl_subscription.note, length: 45) %></td>
+                <td id='smallandlite'><%= uvl_subscription.name %></td>
+                <td id='smallandlite'><%= uvl_subscription.date.strftime('%d/%m/%Y') %></td>
+                <td id='smallandlite'><%= uvl_subscription.customer_name %>&nbsp;<%= uvl_subscription.customer_forname %></td>
+                <td id='smallandlite'><%= uvl_subscription.customer_fiscal_code %></td>
+                <td id='smallandlite'><%= uvl_subscription.category.name %></td>
+                <td id='smallandlite'><%= uvl_subscription.payment_typology.name %></td>
+                <td id='smallandlite'><%= number_to_currency(uvl_subscription.payment) %></td>
+                <td id='smallandlite'><%= truncate(uvl_subscription.note, length: 45) %></td>
               </tr>
               <!-- NOME UFFICIO -->
               <% @ufficio = uvl_subscription.uvl_office.name %>
