@@ -56,7 +56,7 @@
                 <td id='smallandlite'><%= uvl_subscription.category.name %></td>
                 <td id='smallandlite'><%= uvl_subscription.payment_typology.name %></td>
                 <td id='smallandlite'><%= number_to_currency(uvl_subscription.payment) %></td>
-                <td id='smallandlite'><%= truncate(uvl_subscription.note, length: 45) %></td>
+                <td id='smallandlite'><%= truncate(uvl_subscription.note, length: 100) %></td>
               </tr>
               <!-- NOME UFFICIO -->
               <% @ufficio = uvl_subscription.uvl_office.name %>

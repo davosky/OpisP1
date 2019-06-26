@@ -56,7 +56,7 @@
                 <td id='smallandlite'><%= inca_subscription.category.name %></td>
                 <td id='smallandlite'><%= inca_subscription.payment_typology.name %></td>
                 <td id='smallandlite'><%= number_to_currency(inca_subscription.payment) %></td>
-                <td id='smallandlite'><%= truncate(inca_subscription.note, length: 45) %></td>
+                <td id='smallandlite'><%= truncate(inca_subscription.note, length: 100) %></td>
               </tr>
               <!-- NOME UFFICIO -->
               <% @ufficio = inca_subscription.inca_office.name %>
