@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IncaReceipt < ActiveRecord::Base
   belongs_to :inca_office
   belongs_to :payment_typology
@@ -10,8 +12,14 @@ class IncaReceipt < ActiveRecord::Base
     self.name = last_name.to_i + 1
   end
 
+  before_create :set_id
+  def set_id
+    last_id = IncaReceipt.maximum(:id)
+    self.id = last_id.to_i + 1
+  end
+
   has_attached_file :pdf
-  validates_attachment_content_type :pdf, :content_type => ['application/pdf']
+  validates_attachment_content_type :pdf, content_type: ['application/pdf']
 
   validates :date, presence: true
   validates :user_id, presence: true
@@ -28,5 +36,5 @@ class IncaReceipt < ActiveRecord::Base
   validates :customer_province, presence: true
   validates :payment, presence: true
   validates :payment_typology_id, presence: true
-  validates :cancellation_reason, :if => lambda { self.cancellation_id != nil }, presence: true
+  validates :cancellation_reason, if: -> { !cancellation_id.nil? }, presence: true
 end

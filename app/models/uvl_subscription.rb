@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UvlSubscription < ActiveRecord::Base
   belongs_to :uvl_office
   belongs_to :subscription_typology
@@ -22,8 +24,14 @@ class UvlSubscription < ActiveRecord::Base
     self.name = last_name.to_i + 1
   end
 
+  before_create :set_id
+  def set_id
+    last_id = UvlSubscription.maximum(:id)
+    self.id = last_id.to_i + 1
+  end
+
   has_attached_file :pdf
-  validates_attachment_content_type :pdf, :content_type => ['application/pdf']
+  validates_attachment_content_type :pdf, content_type: ['application/pdf']
 
   validates :customer_name, presence: true
   validates :customer_forname, presence: true
@@ -45,5 +53,5 @@ class UvlSubscription < ActiveRecord::Base
   validates :privacy_one, presence: true
   validates :privacy_two, presence: true
   validates :privacy_three, presence: true
-  validates_presence_of :cancellation_reason, :if => lambda { self.cancellation_id != nil }
+  validates_presence_of :cancellation_reason, if: -> { !cancellation_id.nil? }
 end

@@ -2,7 +2,7 @@
 <div class='panel panel-default'>
   <div class='panel-body'>
     <h4>
-      <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      <%= inline_svg('icon_uvl_36.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
       &nbsp;Ufficio Vertenze e legale&nbsp;
       <strong id='text-primary'>&nbsp;Sottoscrizione</strong>
       <span class='pull-right'>
@@ -51,7 +51,7 @@
 <div class='panel panel-default'>
   <div class='panel-body'>
     <h4>
-      <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      <%= inline_svg('icon_uvl_36.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
       &nbsp;Ufficio Vertenze e Legale&nbsp;
       <strong id='text-primary'>
         &nbsp;Sottoscrizione:&nbsp;
@@ -358,14 +358,14 @@
   </div>
 </div>
 <div class='row'>
-    <div class='col col-lg-12'>
-      <div class='row'>
-        <div class='col col-lg-12' id='text-centered'>
-          <% if @uvl_subscription.pdf_file_name != nil %>
-          <iframe src=<%=@uvl_subscription.pdf %> width='945' height='1340' style='border: none;'></iframe>
-          <% end %>
-        </div>
+  <div class='col col-lg-12'>
+    <div class='row'>
+      <div class='col col-lg-12' id='text-centered'>
+        <% if @uvl_subscription.pdf_file_name != nil %>
+        <iframe src=<%=@uvl_subscription.pdf %> width='945' height='1340' style='border: none;'></iframe>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 <% end %>

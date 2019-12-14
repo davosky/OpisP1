@@ -1,8 +1,9 @@
 <div class='panel panel-default'>
   <div class='panel-body'>
     <h4>
-      <%= inline_svg('icon_inca.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
-      &nbsp;Patronato INCA&nbsp;<strong id='text-primary'>&nbsp;<%= fa_icon('download') %>&nbsp;Scarico Ricevute Liberalit&agrave:</strong>
+      <%= inline_svg('icon_inca_36.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Patronato INCA&nbsp;<strong id='text-primary'>&nbsp;<%= fa_icon('download') %>&nbsp;Scarico Ricevute
+        Liberalit&agrave:</strong>
     </h4>
     <hr id='hr-grey'>
     <div class='row'>
@@ -28,50 +29,50 @@
           <div class='form-actions'>
             <%= button_tag type: 'submit', class: 'btn btn-default btn-sm' do %>
             <%= fa_icon('search') %>&nbsp;Cerca
-          <% end %>
-          <% if @inca_receipts.count > 0 %>
+            <% end %>
+            <% if @inca_receipts.count > 0 %>
             &nbsp;
             <%= link_to fa_icon('print') + ' ' + ' Stampa la Distinta', bill_download_inca_receipts_path(request.parameters.merge(format: 'pdf')), target: 'new', class: 'btn btn-default btn-sm', id: 'print' %>
             &nbsp;
             <%= link_to fa_icon('table') + ' ' + ' Esporta in Excel', bill_download_inca_receipts_path(request.parameters.merge(format: 'xlsx')), target: 'new', class: 'btn btn-default btn-sm', id: 'export' %>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
-<br>
-<hr id='hr-grey'>
-<div class='row'>
-  <div class='col col-lg-12'>
-    <table class='table table-striped table-hove'>
-      <thead>
-        <tr>
-          <th>Numero:</th>
-          <th>Data:</th>
-          <th>Nome e Cognome:</th>
-          <th>Codice Fiscale:</th>
-          <th>Ammontare:</th>
-          <th>Note:</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @inca_receipts.each do |inca_receipt| %>
-          <tr>
-            <td><%= inca_receipt.name %></td>
-            <td><%= inca_receipt.date.strftime('%d/%m/%Y') %></td>
-            <td><%= inca_receipt.customer_name %>&nbsp;<%= inca_receipt.customer_forname %></td>
-            <td><%= inca_receipt.customer_fiscal_code %></td>
-            <td><%= number_to_currency(inca_receipt.payment) %></td>
-            <td><%= inca_receipt.note %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= will_paginate @inca_receipts, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
+    <br>
+    <hr id='hr-grey'>
+    <div class='row'>
+      <div class='col col-lg-12'>
+        <table class='table table-striped table-hove'>
+          <thead>
+            <tr>
+              <th>Numero:</th>
+              <th>Data:</th>
+              <th>Nome e Cognome:</th>
+              <th>Codice Fiscale:</th>
+              <th>Ammontare:</th>
+              <th>Note:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @inca_receipts.each do |inca_receipt| %>
+            <tr>
+              <td><%= inca_receipt.name %></td>
+              <td><%= inca_receipt.date.strftime('%d/%m/%Y') %></td>
+              <td><%= inca_receipt.customer_name %>&nbsp;<%= inca_receipt.customer_forname %></td>
+              <td><%= inca_receipt.customer_fiscal_code %></td>
+              <td><%= number_to_currency(inca_receipt.payment) %></td>
+              <td><%= inca_receipt.note %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @inca_receipts, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </div>
 <script>
   $(document).ready(function () {

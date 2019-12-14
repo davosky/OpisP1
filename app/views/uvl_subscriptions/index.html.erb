@@ -1,70 +1,71 @@
 <div class='panel panel-default'>
-    <div class='panel-body'>
-      <h4>
-        <%= inline_svg('icon_uvl.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
-        &nbsp;Ufficio Vertenze e Legale&nbsp;<strong id='text-primary'>&nbsp;<%=  fa_icon('list') %>&nbsp;Elenco Sottoscrizioni:</strong>
-      </h4>
-      <hr id='hr-grey'>
-        <table class='table table-striped table-hover'>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Numero:</th>
-              <th>Data:</th>
-              <th>Nome:</th>
-              <th>Codice Fiscale</th>
-              <th>Categoria:</th>
-              <th>Ammontare</th>
-              <th>Note:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @uvl_subscriptions.each do |uvl_subscription| %>
-            <tr>
-              <td>
-                <% if current_user.institute != 'Ufficio Amministrazione'  %>
-                <%= link_to fa_icon('pencil'), edit_uvl_subscription_path(uvl_subscription), id: 'text-warning' %>
-                <% end %>
-              </td>
-              <td>
-                <% if uvl_subscription.cancellation_id == nil %>
-                  <%=link_to uvl_subscription.name, uvl_subscription, class: 'btn btn-default btn-xs' %>
-                <% else %>
-                  <%=link_to uvl_subscription.name, uvl_subscription, class: 'btn btn-primary btn-xs' %>
-                <% end %>
-              </td>
-              <td>
-                <%= uvl_subscription.date.strftime('%d/%m/%Y') %>
-              </td>
-              <td>
-                <%= uvl_subscription.customer_name %>&nbsp;<%= uvl_subscription.customer_forname %>
-              </td>
-              <td>
-                <%= uvl_subscription.customer_fiscal_code %>
-              </td>
-              <td>
-                  <%= uvl_subscription.category.name %>
-              </td>
-              <td>
-                <%= number_to_currency(uvl_subscription.payment) %>
-              </td>
-              <td>
-                <%= truncate(uvl_subscription.note, length: 35) %>
-              </td>
-            </tr>
+  <div class='panel-body'>
+    <h4>
+      <%= inline_svg('icon_uvl_36.svg', size: '36px * 36px', preserve_aspect_ratio: 'xMaxYMax meet')%>
+      &nbsp;Ufficio Vertenze e Legale&nbsp;<strong id='text-primary'>&nbsp;<%=  fa_icon('list') %>&nbsp;Elenco
+        Sottoscrizioni:</strong>
+    </h4>
+    <hr id='hr-grey'>
+    <table class='table table-striped table-hover'>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Numero:</th>
+          <th>Data:</th>
+          <th>Nome:</th>
+          <th>Codice Fiscale</th>
+          <th>Categoria:</th>
+          <th>Ammontare</th>
+          <th>Note:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @uvl_subscriptions.each do |uvl_subscription| %>
+        <tr>
+          <td>
+            <% if current_user.institute != 'Ufficio Amministrazione'  %>
+            <%= link_to fa_icon('pencil'), edit_uvl_subscription_path(uvl_subscription), id: 'text-warning' %>
             <% end %>
-          </tbody>
-        </table>
-        <br>
-        <%= will_paginate @uvl_subscriptions, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
-    </div>
+          </td>
+          <td>
+            <% if uvl_subscription.cancellation_id == nil %>
+            <%=link_to uvl_subscription.name, uvl_subscription, class: 'btn btn-default btn-xs' %>
+            <% else %>
+            <%=link_to uvl_subscription.name, uvl_subscription, class: 'btn btn-primary btn-xs' %>
+            <% end %>
+          </td>
+          <td>
+            <%= uvl_subscription.date.strftime('%d/%m/%Y') %>
+          </td>
+          <td>
+            <%= uvl_subscription.customer_name %>&nbsp;<%= uvl_subscription.customer_forname %>
+          </td>
+          <td>
+            <%= uvl_subscription.customer_fiscal_code %>
+          </td>
+          <td>
+            <%= uvl_subscription.category.name %>
+          </td>
+          <td>
+            <%= number_to_currency(uvl_subscription.payment) %>
+          </td>
+          <td>
+            <%= truncate(uvl_subscription.note, length: 35) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+    <%= will_paginate @uvl_subscriptions, :previous_label => t("precedente"), :next_label => t("prossimo"), renderer: BootstrapPagination::Rails %>
   </div>
-  <div id='text-centered'>
-    <h6>
-      <small>
-        <p id='notice'>
-          <%= notice %>
-        </p>
-      </small>
-    </h6>
-  </div>
+</div>
+<div id='text-centered'>
+  <h6>
+    <small>
+      <p id='notice'>
+        <%= notice %>
+      </p>
+    </small>
+  </h6>
+</div>

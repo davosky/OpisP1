@@ -33,6 +33,8 @@ gem 'wkhtmltopdf_binary', '~> 0.12.3.2'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rubocop'
+  gem 'solargraph'
 end
 
 group :development do
