@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123102303) do
+ActiveRecord::Schema.define(version: 20191219172210) do
 
   create_table "cancellations", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -271,6 +271,14 @@ ActiveRecord::Schema.define(version: 20190123102303) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "subscription_verifications", force: :cascade do |t|
+    t.text     "wording",     limit: 65535
+    t.integer  "position",    limit: 4
+    t.string   "description", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "subscription_years", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "position",   limit: 4
@@ -320,35 +328,36 @@ ActiveRecord::Schema.define(version: 20190123102303) do
   end
 
   create_table "uvl_receipts", force: :cascade do |t|
-    t.integer  "uvl_office_id",        limit: 4
-    t.string   "customer_name",        limit: 255
-    t.string   "customer_forname",     limit: 255
-    t.string   "customer_birth_place", limit: 255
+    t.integer  "uvl_office_id",                limit: 4
+    t.string   "customer_name",                limit: 255
+    t.string   "customer_forname",             limit: 255
+    t.string   "customer_birth_place",         limit: 255
     t.date     "customer_birth_date"
-    t.string   "customer_fiscal_code", limit: 255
-    t.string   "customer_address",     limit: 255
-    t.string   "customer_zip",         limit: 255
-    t.string   "customer_city",        limit: 255
-    t.string   "customer_province",    limit: 255
-    t.decimal  "payment",                            precision: 8, scale: 2, default: 0.0
-    t.integer  "payment_typology_id",  limit: 4
-    t.integer  "practise_typology_id", limit: 4
-    t.string   "company",              limit: 255
-    t.integer  "lawyer_id",            limit: 4
-    t.integer  "category_id",          limit: 4
-    t.text     "note",                 limit: 65535
-    t.integer  "cancellation_id",      limit: 4
-    t.string   "cancellation_reason",  limit: 255
-    t.integer  "name",                 limit: 4
+    t.string   "customer_fiscal_code",         limit: 255
+    t.string   "customer_address",             limit: 255
+    t.string   "customer_zip",                 limit: 255
+    t.string   "customer_city",                limit: 255
+    t.string   "customer_province",            limit: 255
+    t.decimal  "payment",                                    precision: 8, scale: 2, default: 0.0
+    t.integer  "payment_typology_id",          limit: 4
+    t.integer  "practise_typology_id",         limit: 4
+    t.string   "company",                      limit: 255
+    t.integer  "lawyer_id",                    limit: 4
+    t.integer  "category_id",                  limit: 4
+    t.text     "note",                         limit: 65535
+    t.integer  "cancellation_id",              limit: 4
+    t.string   "cancellation_reason",          limit: 255
+    t.integer  "name",                         limit: 4
     t.date     "date"
-    t.integer  "user_id",              limit: 4
-    t.string   "institute",            limit: 255
-    t.string   "pdf_file_name",        limit: 255
-    t.string   "pdf_content_type",     limit: 255
-    t.integer  "pdf_file_size",        limit: 8
+    t.integer  "user_id",                      limit: 4
+    t.string   "institute",                    limit: 255
+    t.string   "pdf_file_name",                limit: 255
+    t.string   "pdf_content_type",             limit: 255
+    t.integer  "pdf_file_size",                limit: 8
     t.datetime "pdf_updated_at"
-    t.datetime "created_at",                                                               null: false
-    t.datetime "updated_at",                                                               null: false
+    t.datetime "created_at",                                                                       null: false
+    t.datetime "updated_at",                                                                       null: false
+    t.integer  "subscription_verification_id", limit: 4
   end
 
   add_index "uvl_receipts", ["cancellation_id"], name: "index_uvl_receipts_on_cancellation_id", using: :btree
@@ -356,6 +365,7 @@ ActiveRecord::Schema.define(version: 20190123102303) do
   add_index "uvl_receipts", ["lawyer_id"], name: "index_uvl_receipts_on_lawyer_id", using: :btree
   add_index "uvl_receipts", ["payment_typology_id"], name: "index_uvl_receipts_on_payment_typology_id", using: :btree
   add_index "uvl_receipts", ["practise_typology_id"], name: "index_uvl_receipts_on_practise_typology_id", using: :btree
+  add_index "uvl_receipts", ["subscription_verification_id"], name: "index_uvl_receipts_on_subscription_verification_id", using: :btree
   add_index "uvl_receipts", ["user_id"], name: "index_uvl_receipts_on_user_id", using: :btree
   add_index "uvl_receipts", ["uvl_office_id"], name: "index_uvl_receipts_on_uvl_office_id", using: :btree
 
@@ -475,6 +485,7 @@ ActiveRecord::Schema.define(version: 20190123102303) do
   add_foreign_key "uvl_receipts", "lawyers"
   add_foreign_key "uvl_receipts", "payment_typologies"
   add_foreign_key "uvl_receipts", "practise_typologies"
+  add_foreign_key "uvl_receipts", "subscription_verifications"
   add_foreign_key "uvl_receipts", "users"
   add_foreign_key "uvl_receipts", "uvl_offices"
   add_foreign_key "uvl_subscriptions", "cancellations"

@@ -53,7 +53,7 @@
             </p>
             <br>
             <p>
-                p.<%= @uvl_receipt.institute %><small>(<%= @uvl_receipt.uvl_office.name %>)</small>
+                <%= @uvl_receipt.institute %><small>(<%= @uvl_receipt.uvl_office.name %>)</small>
                 <br>
                 <br>
                 <br>
@@ -72,9 +72,7 @@
               e successive integrazioni
             </p>
             <p>
-              Il Lavoratore risulta iscritto per l'anno <%= @uvl_receipt.date.strftime('%Y') %> presso la Categoria: <%= @uvl_receipt.category.name %>.
-              Iscrizione attiva confermata in data <%= @uvl_receipt.date.strftime('%d/%m/%Y') %> da archivio ArGO installazione della Provincia di Udine
-              riferimento tramite codice fiscale <%= @uvl_receipt.customer_fiscal_code %>
+              <%= @uvl_receipt.subscription_verification.wording %>
             </p>
             <br>
         </div>

@@ -177,6 +177,10 @@ it:
         date: DATA
         user_id: OPERATORE
         institute: ISTITUTO
+      subscription_verification:
+        wording: DICITURA
+        description: DESCRIZIONE
+        position: POSIZIONE
     errors:
       messages:
         record_invalid: 'Validazione fallita: %{errors}'

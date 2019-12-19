@@ -1016,6 +1016,27 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'SubscriptionVerification' do
+    visible true
+    label 'Verifica Sottoscrizione'
+    label_plural 'Verifiche Sottoscrizione'
+    configure :wording do
+      label 'Dicitura:'
+    end
+    configure :description do
+      label 'Descrizione:'
+    end
+    configure :position do
+      label 'Posizione:'
+    end
+    configure :created_at do
+      label 'Creato il:'
+    end
+    configure :updated_at do
+      label 'Aggiornato il:'
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

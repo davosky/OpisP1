@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UvlReceiptsController < ApplicationController
-  before_action :set_uvl_receipt, only: [:show, :edit, :update, :destroy]
+  before_action :set_uvl_receipt, only: %i[show edit update destroy]
 
   def index
     @user = current_user
@@ -86,11 +88,12 @@ class UvlReceiptsController < ApplicationController
   end
 
   private
-    def set_uvl_receipt
-      @uvl_receipt = UvlReceipt.find(params[:id])
-    end
 
-    def uvl_receipt_params
-      params.require(:uvl_receipt).permit(:uvl_office_id, :customer_name, :customer_forname, :customer_birth_place, :customer_birth_date, :customer_fiscal_code, :customer_address, :customer_zip, :customer_city, :customer_province, :payment, :payment_typology_id, :practise_typology_id, :company, :lawyer_id, :category_id, :note, :cancellation_id, :cancellation_reason, :name, :date, :user_id, :institute, :pdf)
-    end
+  def set_uvl_receipt
+    @uvl_receipt = UvlReceipt.find(params[:id])
+  end
+
+  def uvl_receipt_params
+    params.require(:uvl_receipt).permit(:uvl_office_id, :customer_name, :customer_forname, :customer_birth_place, :customer_birth_date, :customer_fiscal_code, :customer_address, :customer_zip, :customer_city, :customer_province, :payment, :payment_typology_id, :practise_typology_id, :company, :lawyer_id, :category_id, :note, :cancellation_id, :cancellation_reason, :name, :date, :user_id, :institute, :subscription_verification_id, :pdf)
+  end
 end

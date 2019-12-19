@@ -7,6 +7,7 @@ class UvlReceipt < ActiveRecord::Base
   belongs_to :lawyer
   belongs_to :category
   belongs_to :cancellation
+  belongs_to :subscription_verification
   belongs_to :user
 
   before_create :set_name
@@ -42,5 +43,6 @@ class UvlReceipt < ActiveRecord::Base
   validates :practise_typology_id, presence: true
   validates :company, presence: true
   validates :category_id, presence: true
+  validates :subscription_verification_id, presence: true
   validates :cancellation_reason, if: -> { !cancellation_id.nil? }, presence: true
 end
