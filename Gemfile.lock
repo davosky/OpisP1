@@ -146,6 +146,7 @@ GEM
     multi_json (1.13.1)
     mysql2 (0.4.10)
     nested_form (0.3.2)
+    nio4r (2.5.2)
     nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -155,7 +156,8 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    puma (3.12.0)
+    puma (4.3.3)
+      nio4r (~> 2.0)
     rack (1.6.11)
     rack-pjax (1.0.0)
       nokogiri (~> 1.5)
@@ -287,7 +289,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)
   paperclip (~> 6.1)
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (= 4.2.10)
   rails-i18n!
   rails_admin (~> 1.4, >= 1.4.2)
