@@ -8,14 +8,14 @@ default: &default
 
 development:
   <<: *default
-  database: OpisP1_development
+  database: OpisP21_development
 
 test:
   <<: *default
-  database: OpisP1_test
+  database: OpisP21_test
 
 production:
   <<: *default
-  database: OpisP1_production
-  username: OpisP1
+  database: OpisP21_production
+  username: OpisP21
   password: <%= ENV['OPISP1_DATABASE_PASSWORD'] %>

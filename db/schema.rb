@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191219172210) do
+ActiveRecord::Schema.define(version: 20201202160926) do
 
   create_table "cancellations", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20191219172210) do
     t.string   "pdf_content_type",         limit: 255
     t.integer  "pdf_file_size",            limit: 8
     t.datetime "pdf_updated_at"
+    t.string   "company_vat_code",         limit: 255
+    t.string   "company_fiscal_code",      limit: 255
   end
 
   create_table "inca_offices", force: :cascade do |t|
@@ -196,6 +198,8 @@ ActiveRecord::Schema.define(version: 20191219172210) do
     t.datetime "pdf_updated_at"
     t.datetime "created_at",                                                                   null: false
     t.datetime "updated_at",                                                                   null: false
+    t.string   "company_vat_code",         limit: 255
+    t.string   "company_fiscal_code",      limit: 255
   end
 
   add_index "inca_subscriptions", ["cancellation_id"], name: "index_inca_subscriptions_on_cancellation_id", using: :btree
@@ -419,6 +423,8 @@ ActiveRecord::Schema.define(version: 20191219172210) do
     t.datetime "pdf_updated_at"
     t.datetime "created_at",                                                                   null: false
     t.datetime "updated_at",                                                                   null: false
+    t.string   "company_vat_code",         limit: 255
+    t.string   "company_fiscal_code",      limit: 255
   end
 
   add_index "uvl_subscriptions", ["cancellation_id"], name: "index_uvl_subscriptions_on_cancellation_id", using: :btree
