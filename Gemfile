@@ -18,7 +18,7 @@ gem 'paperclip', '~> 6.1'
 gem 'puma', '~> 3.12'
 gem 'rails', '4.2.10'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
-gem 'rails_admin', '~> 1.4', '>= 1.4.2'
+gem 'rails_admin', '~> 1.4'
 gem 'rails_admin-i18n', '~> 1.11', '>= 1.11.2'
 gem 'ransack', '= 1.8.9'
 gem 'rubyzip', '>= 1.2.1'
