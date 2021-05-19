@@ -15,7 +15,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'paperclip', '~> 6.1'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 5.3'
 gem 'rails', '4.2.10'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x' # For 4.x
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
